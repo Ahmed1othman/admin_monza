@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // Settings::class,
-            // SetupPermissions::class,
-            // currencies::class,
-            // ModelsContent::class,
-            // Cities::class,
-            // CompanyDescriptions::class,
-            // CompaniesCities::class,
+             Settings::class,
+             SetupPermissions::class,
+             currencies::class,
+             ModelsContent::class,
+             Cities::class,
+             CompanyDescriptions::class,
+             CompaniesCities::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
