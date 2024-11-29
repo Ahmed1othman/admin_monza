@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Interfaces\Auth\BaseAuth;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class AdminAuth implements BaseAuth
 {

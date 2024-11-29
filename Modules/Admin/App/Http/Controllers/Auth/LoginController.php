@@ -35,10 +35,10 @@ class LoginController extends Controller
         $authorize  = $auth->check();
 
         if(!$authorize) {
-            return redirect("/admin/login")->withErrors(["البريد الالكتروني او كلمة المرور غير صحيحة"]);
+            return redirect("/admin/login")->withErrors(["البريد الإلكتروني او كلمة المرور غير صحيحة"]);
         }
-      
-        return $auth->login();        
+
+        return $auth->login();
     }
 
 
