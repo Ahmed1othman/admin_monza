@@ -15,20 +15,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-//        $this->call([
-//             Settings::class,
-//             SetupPermissions::class,
-//             currencies::class,
-//             ModelsContent::class,
-//             Cities::class,
-//             CompanyDescriptions::class,
-//             CompaniesCities::class,
-//        ]);
+        $this->call([
+             Settings::class,
+             SetupPermissions::class,
+             currencies::class,
+             ModelsContent::class,
+             Cities::class,
+             CompanyDescriptions::class,
+             CompaniesCities::class,
+        ]);
         // \App\Models\User::factory(10)->create();
 
-//        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-//        DB::table('users')->truncate();
-//        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
          \App\Models\User::create([
              'name' => 'admin',
              'username' => 'admin_monzar',
