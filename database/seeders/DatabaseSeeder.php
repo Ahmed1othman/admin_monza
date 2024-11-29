@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
 //        ]);
         // \App\Models\User::factory(10)->create();
 
-        DB::table('users')->trancate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
          \App\Models\User::create([
              'name' => 'admin',
              'email' => 'admin@monzarrentalcar.com',
