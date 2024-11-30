@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BrandsTableSeeder extends Seeder
 {
@@ -14,11 +15,7 @@ class BrandsTableSeeder extends Seeder
      */
     public function run()
     {
-
-
-        \DB::table('brands')->delete();
-
-        \DB::table('brands')->insert(array (
+        $brandsToUpdate = array (
             0 =>
             array (
                 'id' => 1,
@@ -491,7 +488,7 @@ class BrandsTableSeeder extends Seeder
             array (
                 'id' => 40,
                 'title' => '{"en":"Lamborghini","ar":"لامبورجيني"}',
-                'image' => 'brands/16833991552.webp',
+                'image' => 'brands/lamborghini.webp',
                 'slug' => 'lamborghini',
                 'sync_id' => '116',
                 'created_at' => '2024-06-22 07:54:10',
@@ -546,9 +543,23 @@ class BrandsTableSeeder extends Seeder
                 'updated_at' => '2024-06-22 07:54:10',
                 'page_title' => '{"en":"Rent JAC Car in Dubai | Best Cars in UAE","ar":""}',
                 'page_description' => '{"en":"Discover the ultimate car rental experience with JAC Car Rental in Dubai. Get your dream car at affordable prices today with Tajeer. Book now!","ar":""}',
-            ),
-        ));
+            )
+        );
 
+
+
+
+        foreach ($brandsToUpdate as $brandData) {
+            DB::table('brands')
+                ->where('id', $brandData['id'])
+                ->update(['image' => $brandData['image']]);
+        }
+
+        $this->command->info('Brands updated successfully!');
 
     }
+
+
+
+
 }
