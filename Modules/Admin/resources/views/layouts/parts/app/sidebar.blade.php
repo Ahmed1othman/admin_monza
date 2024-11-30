@@ -1,6 +1,6 @@
        <!--  BEGIN SIDEBAR  -->
         <div class="sidebar-wrapper sidebar-theme">
-            
+
             <nav id="sidebar">
                 <div class="shadow-bottom"></div>
                 <ul class="list-unstyled menu-categories" id="accordionExample">
@@ -17,7 +17,7 @@
                     @endcan
 
 
-                    
+
 
                     @can('cars')
 
@@ -47,7 +47,7 @@
                             <li>
                                 <a href="{{url('/')}}/admin/cars?status=pending&type=default"> {{__('admin.pending')}}</a>
                             </li>
-                            
+
                         </ul>
                     </li>
                     @endif
@@ -56,7 +56,7 @@
                     <li class="menu">
                         <a href="#carsdriver" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.cars_by_driver')}}</span>
                             </div>
                             <div>
@@ -112,7 +112,7 @@
                                           <path d="M2 7l2-2h16l2 2"></path>
                                           <path d="M6 10v6M10 10v6m4-6v6m4-6v6"></path>
                                         </svg>
-                     
+
                                 <span>{{__('admin.rental_offices')}}</span>
                             </div>
                              <div>
@@ -144,7 +144,7 @@
                     <li class="menu">
                         <a href="#countries" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.areas')}}</span>
                             </div>
                             <div>
@@ -167,7 +167,7 @@
                     <li class="menu">
                         <a href="#home" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.page')}} {{__('admin.home')}}</span>
                             </div>
                             <div>
@@ -186,7 +186,7 @@
                     <li class="menu">
                         <a href="#contentpage" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.content')}} {{__('admin.pages')}}</span>
                             </div>
                             <div>
@@ -210,10 +210,10 @@
                     </li>
                     @endcan
 
-                    
+
 
                     @can('definitions')
-                    
+
                     <li class="menu">
                         <a href="#dashboard2" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">
                             <div class="">
@@ -269,7 +269,7 @@
                     <!--        <li>-->
                     <!--            <a href="{{url('/')}}/admin/features?type=yacht"> {{__('admin.features')}}</a>-->
                     <!--        </li>-->
- 
+
 
                     <!--    </ul>-->
                     <!--</li>-->
@@ -295,7 +295,7 @@
                     <li class="menu">
                         <a href="#notification" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.notifications')}}</span>
                             </div>
                             <div>
@@ -306,7 +306,7 @@
                             <li class="menu">
                                 <a href="{{url('/')}}/admin/messages" aria-expanded="false" class="dropdown-toggle">
                                     <div class="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                         <span>{{__('admin.messages')}}</span>
                                     </div>
                                 </a>
@@ -316,7 +316,7 @@
                     <li class="menu">
                         <a href="{{url('/')}}/admin/currencies" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.currencies')}}</span>
                             </div>
                         </a>
@@ -324,7 +324,7 @@
                     <li class="menu">
                         <a href="{{url('/')}}/admin/settings" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.settings')}}</span>
                             </div>
                         </a>
@@ -335,7 +335,7 @@
                     <li class="menu">
                         <a href="{{url('/')}}/admin/pages" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.pages')}}</span>
                             </div>
                         </a>
@@ -343,8 +343,17 @@
                     <li class="menu">
                         <a href="{{url('/')}}/admin/blog" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.blog')}}</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu">
+                        <a href="{{url('/')}}/admin/service" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                <span>{{__('admin.services')}}</span>
                             </div>
                         </a>
                     </li>
@@ -354,23 +363,23 @@
                     <li class="menu">
                         <a href="{{url('/')}}/admin/customers" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.customers')}}</span>
                             </div>
                         </a>
                     </li>
                     @endcan
 
-                   
 
-                   
+
+
                     @if(auth()->user()->type == "user")
 
 
                     <li class="menu">
                         <a href="{{url('/')}}/admin/offers" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.offers_sidebar')}} {{__('admin.cars')}}</span>
                             </div>
                         </a>
@@ -379,16 +388,16 @@
                     <li class="menu">
                         <a href="{{url('/')}}/admin/companies/{{auth()->user()->company->id}}/edit" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                                 <span>{{__('admin.settings')}} {{__('admin.office')}}</span>
                             </div>
                         </a>
                     </li>
                     @endif
 
-       
+
                 </ul>
-                
+
             </nav>
 
         </div>

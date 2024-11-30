@@ -49,6 +49,9 @@ Route::group(["middleware" => ['country-api']], function () {
     Route::get('/currencies', 'PagesController@currencies');
     Route::get('/countries/{id}/cities', 'PagesController@cities');
     Route::get('/blog', 'PagesController@blog');
+    Route::get('/blog/{id}', 'PagesController@showBlog');
+    Route::get('/service', 'PagesController@service');
+    Route::get('/service/{id}', 'PagesController@showService');
     Route::post('/contact', 'PagesController@contact');
     Route::post('/signup', 'UsersController@signup');
     Route::post('/login', 'UsersController@login');

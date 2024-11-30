@@ -36,6 +36,25 @@ class PagesController extends Controller
         return response()->json($blog);
     }
 
+    public function service()
+    {
+        $rows = \App\Models\Service::get();
+        return response()->json($rows);
+    }
+
+
+    public function showBlog($id)
+    {
+        $blog = \App\Models\Service::get();
+        return response()->json($blog);
+    }
+
+    public function showService($id)
+    {
+        $blog = \App\Models\Service::get();
+        return response()->json($blog);
+    }
+
     public function contact(Request $request) {
 
         $data = $request->all();

@@ -18,6 +18,8 @@ return [
     "title" => "Title",
     "content" => "Content",
     "blog" => "Blog",
+    "service" => "Service",
+    "services" => "Services",
     "page" => "Page",
     "description" => "Description",
     "brand" => "Brand",

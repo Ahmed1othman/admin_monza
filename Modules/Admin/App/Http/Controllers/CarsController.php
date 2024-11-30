@@ -95,7 +95,7 @@ class CarsController extends Controller
             $data['status'] = 'pending';
             $data['is_publish'] = 0;
         }
-        
+
          // Check if offer fields are provided and set offer data
         if ($request->has('offer_amount') && $request->has('offer_duration')) {
             $data['offer_amount'] = $request->offer_amount;
@@ -103,9 +103,9 @@ class CarsController extends Controller
             $data['offer_start_time'] = now(); // Set the offer start time to the current time
         }
         $data['type'] = $request->type;
-        
+
         $car = Car::create($data);
-        
+
         $car->features()->sync($request->get('feature_id'));
         $car->types()->sync($request->get('type_id'));
         if($request->hasFile('files')) {
@@ -160,18 +160,24 @@ class CarsController extends Controller
         } else {
             $data['is_day_offer'] = "0";
         }
-    
+
         if(auth()->user()->type == "user") {
             $data['status'] = 'pending';
         }
          // Update offer details if provided
         if ($request->has('offer_amount') || $request->has('offer_duration')) {
+            $offerAmountChanged = $request->input('offer_amount') !== null && $request->input('offer_amount') != $car->offer_amount;
+            $offerDurationChanged = $request->input('offer_duration') !== null && $request->input('offer_duration') != $car->offer_duration;
+
+            if ($offerAmountChanged || $offerDurationChanged) {
+                $car->offer_start_time = now(); // Update to current time if either value changes
+            }
+
+            // Update the values regardless of changes
             $car->offer_amount = $request->input('offer_amount', $car->offer_amount);
             $car->offer_duration = $request->input('offer_duration', $car->offer_duration);
-            if (!$car->offer_start_time) {
-                $car->offer_start_time = now(); // Set to current time only if offer_start_time is not set
-            }
         }
+
         $car->update($data);
         $car->features()->sync($request->get('feature_id'));
         $car->types()->sync($request->get('type_id'));
@@ -183,7 +189,7 @@ class CarsController extends Controller
 
         // $resource = "car";
         // $content = new \Modules\Admin\App\Services\ContentService();
-        // $content->update($request, 
+        // $content->update($request,
         // \App\Models\Content::where('type',$resource)->where('resource_id',$id)->first(),
         // \App\Models\SEO::where('type',$resource)->where('resource_id',$id)->first()
         // );
@@ -198,7 +204,7 @@ class CarsController extends Controller
         foreach($cars as $car) {
             if(auth()->user()->type == "user" && auth()->user()->company->id != $car->company_id) {
                 abort(403);
-            } 
+            }
             if($car->company->getAvailableRefreshCars() <= 0) {
                 return redirect()->back()->withErrors(["لقد استنفذت عدد السيارات المتاحة للتحديث"]);
             }
@@ -216,7 +222,7 @@ class CarsController extends Controller
         $car = Car::find($id);
         if(auth()->user()->type == "user" && auth()->user()->company->id != $car->company_id) {
             abort(403);
-        } 
+        }
         if($car->company->getAvailableRefreshCars() <= 0) {
             return redirect()->back()->withErrors(["لقد استنفذت عدد السيارات المتاحة للتحديث"]);
         }

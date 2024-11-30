@@ -14,13 +14,13 @@ class HomeController extends Controller
      */
     public function types()
     {
-        $types = \App\Models\Type::select("id","title","image")->get();
+        $types = \App\Models\Type::select("id","title","image")->withCount('cars')->get();
         return response()->json($types);
     }
 
     public function brands()
     {
-        $brands = \App\Models\Brand::select("id","title","image")->get();
+        $brands = \App\Models\Brand::select("id","title","image")->withCount('cars')->get();
         return response()->json($brands);
     }
 

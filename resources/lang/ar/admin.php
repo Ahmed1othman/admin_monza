@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
     "add" => "اضافة",
@@ -18,6 +18,8 @@ return [
     "title" => "عنوان",
     "content" => "محتوي",
     "blog" => "المدونة",
+    "service" => "خدمة",
+    "services" => "الخدمات",
     "page" => "الصفحة",
     "description" => "وصف",
     "brand" => "ماركة",
@@ -166,7 +168,7 @@ return [
     "show" => "عرض",
     "login_to" => "الدخول الي",
     "your_account" => "حسابك",
-    
+
 
 
 ];
