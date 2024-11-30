@@ -21,7 +21,7 @@ class Blog extends Model
 
     protected $hidden = ['created_at', 'updated_at','image'];
 
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url','date'];
 
     public function getImageUrlAttribute() {
         return url('storage/'.$this->image);
@@ -32,15 +32,23 @@ class Blog extends Model
     {
         $date = Carbon::parse($this->created_at);
 
-        // Format the date in English
-        $englishDate = $date->locale('en')->translatedFormat('j F'); // Example: 10 May
+        // English Format
+        $englishDay = $date->locale('en')->translatedFormat('j'); // Day (e.g., 10)
+        $englishMonth = $date->locale('en')->translatedFormat('F'); // Month (e.g., May)
 
-        // Format the date in Arabic
-        $arabicDate = $date->locale('ar')->translatedFormat('j F'); // Example: 10 مايو
+        // Arabic Format
+        $arabicDay = $date->locale('ar')->translatedFormat('j'); // Day (e.g., 10)
+        $arabicMonth = $date->locale('ar')->translatedFormat('F'); // Month (e.g., مايو)
 
         return [
-            'en' => $englishDate,
-            'ar' => $arabicDate,
+            'en' => [
+                'day' => $englishDay,
+                'month' => $englishMonth,
+            ],
+            'ar' => [
+                'day' => $arabicDay,
+                'month' => $arabicMonth,
+            ],
         ];
     }
 }
