@@ -45,13 +45,13 @@ class PagesController extends Controller
 
     public function showBlog($id)
     {
-        $blog = \App\Models\Service::get();
+        $blog = \App\Models\Blog::where('id',$id)->first();
         return response()->json($blog);
     }
 
     public function showService($id)
     {
-        $blog = \App\Models\Service::get();
+        $blog = \App\Models\Service::where('id',$id)->first();
         return response()->json($blog);
     }
 
