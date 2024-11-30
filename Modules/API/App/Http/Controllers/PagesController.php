@@ -21,6 +21,7 @@ class PagesController extends Controller
     public function showPage($id)
     {
         $page = \App\Models\Page::findOrfail($id);
+        $page->contents = \App\Models\Content::where('type','page')->where('resource_id',$id)->get();
         return response()->json($page);
     }
 
@@ -58,6 +59,8 @@ class PagesController extends Controller
 
     public function aboutUs(){
         $page = \App\Models\Page::where('slug','about-us')->first();
+        $page->contents = \App\Models\Content::where('type','page')->where('resource_id',$page->id)->get();
+
         return response()->json($page);
     }
     public function contact(Request $request) {
