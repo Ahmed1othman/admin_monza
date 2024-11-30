@@ -260,7 +260,7 @@ class BrandsTableSeeder extends Seeder
             array (
                 'id' => 21,
                 'title' => '{"en":"Aston Martin","ar":"استون مارتن"}',
-                'image' => 'brands/aston-martin.png',
+                'image' => 'brands/aston-martin.webp',
                 'slug' => 'aston-martin',
                 'sync_id' => '85',
                 'created_at' => '2024-06-22 07:54:10',
@@ -368,7 +368,7 @@ class BrandsTableSeeder extends Seeder
             array (
                 'id' => 30,
                 'title' => '{"en":"Slingshot","ar":"Slingshot"}',
-                'image' => 'brands/slingshot.png',
+                'image' => 'brands/slingshot.webp',
                 'slug' => 'slingshot',
                 'sync_id' => '123',
                 'created_at' => '2024-06-22 07:54:10',
@@ -452,7 +452,7 @@ class BrandsTableSeeder extends Seeder
             array (
                 'id' => 37,
                 'title' => '{"en":"Jetour","ar":"Jetour"}',
-                'image' => 'brands/jetour.png',
+                'image' => 'brands/jetour.webp',
                 'slug' => 'jetour',
                 'sync_id' => '125',
                 'created_at' => '2024-06-22 07:54:10',
