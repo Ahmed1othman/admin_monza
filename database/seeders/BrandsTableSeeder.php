@@ -320,7 +320,7 @@ class BrandsTableSeeder extends Seeder
             array (
                 'id' => 26,
                 'title' => '{"en":"Fiat","ar":"فيات"}',
-                'image' => 'brands/fiat.jpg',
+                'image' => 'brands/fiat.webp',
                 'slug' => 'fiat',
                 'sync_id' => '94',
                 'created_at' => '2024-06-22 07:54:10',
