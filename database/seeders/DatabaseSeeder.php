@@ -36,5 +36,6 @@ class DatabaseSeeder extends Seeder
              'password' => 'Monzer@2025',
              'type' => 'admin',
          ]);
+        $this->call(BrandsTableSeeder::class);
     }
 }

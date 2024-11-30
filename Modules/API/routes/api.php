@@ -40,6 +40,8 @@ Route::group(["middleware" => ['country-api']], function () {
     Route::get('/sections/{id}/show', 'CarsController@section');
     Route::get('/pages', 'PagesController@pages');
     Route::get('/pages/{id}/show', 'PagesController@showPage');
+    Route::get('/pages/about-us', 'PagesController@aboutUs');
+    Route::get('/pages/contact-us', 'PagesController@contactUs');
     Route::get('/brands/{id}/models', 'CarsController@getModels');
     Route::get('/colors', 'CarsController@getColors');
     Route::get('/years', 'CarsController@getYears');
