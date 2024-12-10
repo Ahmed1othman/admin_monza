@@ -11,12 +11,14 @@ class Blog extends Model
     use HasFactory;
     use HasTranslations;
 
-    public $translatable = ['title','content'];
+    public $translatable = ['title','content','meta_title','meta_description','meta_keywords'];
 
     protected $fillable = [
         'title',
         'content',
-        'image'
+        'image','meta_title',
+        'meta_description',
+        'meta_keywords'
     ];
 
     protected $hidden = ['created_at', 'updated_at','image'];

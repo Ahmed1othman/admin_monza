@@ -14,7 +14,7 @@ class Car extends Model implements Sitemapable
 
     use HasTranslations;
 
-    public $translatable = ['name','customer_notes','description'];
+    public $translatable = ['name','customer_notes','description','meta_title','meta_description','meta_keywords'];
 
     protected $fillable = [
         'name',
@@ -46,6 +46,9 @@ class Car extends Model implements Sitemapable
         'km_per_day',
         'km_per_month',
         "insurance_type",
+        'meta_title',
+        'meta_description',
+        'meta_keywords'
     ];
 
     protected $hidden = ['image','is_day_offer','day_offer_price',
@@ -118,13 +121,13 @@ class Car extends Model implements Sitemapable
     public function getDescription() {
         $model = $this->model;
         $basicDescription = $model->page_description;
-        $carDescription   = __('lang.Rent') 
-        . " " . $this->name 
+        $carDescription   = __('lang.Rent')
+        . " " . $this->name
         . " " .   ($this->year ? $this->year->title : '')
         . " " .  ($this->color ? $this->color->title : '')
-        . " " . __('lang.Color') 
-        . " " . __('lang.Contact') 
-        . " " . $this->company->name 
+        . " " . __('lang.Color')
+        . " " . __('lang.Contact')
+        . " " . $this->company->name
         . " " . __('lang.For Booking');
         return $carDescription . " <br/> " . $basicDescription;
     }
@@ -132,16 +135,16 @@ class Car extends Model implements Sitemapable
     public function getFeatures() {
         $model = $this->model;
         $basicFeatures = $model->page_features;
-        $carFeatures   = __('lang.Rent') 
-        . " " . $this->name 
-        . " " .   $this->year->title 
+        $carFeatures   = __('lang.Rent')
+        . " " . $this->name
+        . " " .   $this->year->title
         . " " .  $this->color->title  . " " . __('lang.Color') . ", "
         . " " .  $this->doors . " " . __('lang.Doors') . ", "
         . " " .  __('lang.Minimum of Days') . " " .  $this->minimum_day_booking . ", "
         . " " .  $this->passengers . " " . __('lang.Passengers') . ", "
         . " " .__('lang.Price') . " " .  __('lang.Day') . " " .  $this->price_per_day . ", "
-        
-    
+
+
         . " " . __('lang.Contact') . " " . $this->company->name . " " . __('lang.For Booking');
         return $carFeatures . " <br/> " . $basicFeatures;
     }

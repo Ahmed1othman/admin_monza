@@ -58,6 +58,18 @@ class BrandsController extends Controller
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['page_description'][$key] = $request->get("page_description_" . $key);
         }
+        $data['meta_title'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_title'][$key] = $request->get("meta_title_" . $key);
+        }
+        $data['meta_description'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_description'][$key] = $request->get("meta_description_" . $key);
+        }
+        $data['meta_keywords'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_keywords'][$key] = $request->get("meta_keywords_" . $key);
+        }
         if($request->has('image')){
             $data['image'] = $request->file('image')->store('brands', 'public');
         }
@@ -109,15 +121,27 @@ class BrandsController extends Controller
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['page_description'][$key] = $request->get("page_description_" . $key);
         }
+        $data['meta_title'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_title'][$key] = $request->get("meta_title_" . $key);
+        }
+        $data['meta_description'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_description'][$key] = $request->get("meta_description_" . $key);
+        }
+        $data['meta_keywords'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_keywords'][$key] = $request->get("meta_keywords_" . $key);
+        }
         if($request->has('image')){
             $data['image'] = $request->file('image')->store('brands', 'public');
         }
         $brand->update($data);
 
-        
+
         $resource = "brand";
         $content = new \Modules\Admin\App\Services\ContentService();
-        $content->update($request, 
+        $content->update($request,
         \App\Models\Content::where('type',$resource)->where('resource_id',$id)->first(),
         \App\Models\SEO::where('type',$resource)->where('resource_id',$id)->first()
         );

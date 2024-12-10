@@ -73,6 +73,7 @@ class CarsController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // dd($data);
         $data['name'] = [];
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['name'][$key] = $request->get("name_" . $key);
@@ -84,6 +85,18 @@ class CarsController extends Controller
         $data['description'] = [];
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['description'][$key] = $request->get("description_" . $key);
+        }
+        $data['meta_title'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_title'][$key] = $request->get("meta_title_" . $key);
+        }
+        $data['meta_description'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_description'][$key] = $request->get("meta_description_" . $key);
+        }
+        $data['meta_keywords'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_keywords'][$key] = $request->get("meta_keywords_" . $key);
         }
         if($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('cars', 'public');
@@ -151,6 +164,18 @@ class CarsController extends Controller
         $data['description'] = [];
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['description'][$key] = $request->get("description_" . $key);
+        }
+        $data['meta_title'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_title'][$key] = $request->get("meta_title_" . $key);
+        }
+        $data['meta_description'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_description'][$key] = $request->get("meta_description_" . $key);
+        }
+        $data['meta_keywords'] = [];
+        foreach(\Config::get("app.languages") as $key => $lang) {
+            $data['meta_keywords'][$key] = $request->get("meta_keywords_" . $key);
         }
         if($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('cars', 'public');

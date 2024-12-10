@@ -14,7 +14,7 @@ class Type extends Model implements Sitemapable
     use HasFactory;
     use HasTranslations;
 
-    public $translatable = ['title','page_title','page_description'];
+    public $translatable = ['title','page_title','page_description','meta_title','meta_description','meta_keywords'];
     protected $fillable = [
         'title',
         'image',
@@ -22,7 +22,9 @@ class Type extends Model implements Sitemapable
         'sync_id',
         'page_title',
         'page_description',
-        'external_url'
+        'external_url','meta_title',
+        'meta_description',
+        'meta_keywords'
     ];
 
     protected $hidden = ['created_at', 'updated_at','image'];

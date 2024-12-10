@@ -168,4 +168,5 @@ return [
     "show" => "Show",
     "login_to" => "Login to",
     "your_account" => "Your Account",
+    "meta_title" => 'Meta Title'
 ];
