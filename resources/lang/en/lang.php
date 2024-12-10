@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
 
@@ -135,12 +135,13 @@ return [
     "note_03" => "Required Documents for GCC National /  Valid GCC ID Or Passport and GCC driving license
                                             <span>Read about GCC countries </span>",
     "note_04" => "Insurance type/ Full insurance <span>Read about car rental insurance.</span>",
-    "note_05" => "make sure to receive a receipt for paid amount and a copy of 
+    "note_05" => "make sure to receive a receipt for paid amount and a copy of
                                             rental contract from the rental company on delivery.",
-    "note_06" => "The company that owns TAJEER platform does not take any responsibility 
+    "note_06" => "The company that owns TAJEER platform does not take any responsibility
                                             for financial part and specializes only in displaying cars and arranging reservations.",
 
     "Read Less" => "Read Less",
     "Insurance Type" => "Insurance Type",
     "Full" => "Full",
+    "meta_title" => "Meta Title"
 ];

@@ -41,7 +41,7 @@
                                 <input type="file" required class="custom-file-input" accept="image/*" name="image" id="customFile">
                                 <label class="custom-file-label" for="customFile">{{__('admin.choose_file')}}</label>
                             </div>
-                          
+
                         </div>
 
                     </div>
@@ -56,8 +56,54 @@
                             "content" => null,
                             "seo"     => null,
                             "faq"     => null
-                    ])  
-         
+                    ])
+                  <div class="statbox widget box box-shadow mt-3">
+                    <div class="widget-content widget-content-area ">
+                    <h4>
+                        Meta Data
+                    </h4>
+                     <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                {{-- Meta Title Fields --}}
+                                @foreach(\Config::get("app.languages") as $key => $value)
+                                <div class="form-group row mb-4">
+                                    <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('meta_title') }} {{$value}}</label>
+                                    <div class="col-xl-9 col-lg-9 col-sm-10">
+                                        <input type="text" required class="form-control" name="meta_title_{{$key}}" placeholder="{{ __('') }}">
+                                    </div>
+                                </div>
+                                @endforeach
+
+
+                                {{-- Meta Description Fields --}}
+                                @foreach(\Config::get("app.languages") as $key => $value)
+                                <div class="form-group row mb-4">
+                                    <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('meta_description') }} {{$value}}</label>
+                                    <div class="col-xl-9 col-lg-9 col-sm-10">
+                                        <input type="text" required class="form-control" name="meta_description_{{$key}}" placeholder="{{ __('') }}">
+                                    </div>
+                                </div>
+                                @endforeach
+
+
+                                {{-- Meta Keywords Fields --}}
+                                @foreach(\Config::get("app.languages") as $key => $value)
+                                <div class="form-group row mb-4">
+                                    <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('meta_keywords') }} {{$value}}</label>
+                                    <div class="col-xl-9 col-lg-9 col-sm-10">
+                                        <input id="tags_types_{{$key}}" data-role="tagsinput" type="text" required class="form-control tag" name="meta_keywords_{{$key}}" placeholder="{{ __('') }}">
+                                    </div>
+                                </div>
+                                @endforeach
+
+
+                                {{-- Add other offer-specific fields here if needed --}}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> {{__('admin.cancel')}}</button>
@@ -68,14 +114,24 @@
         </div>
     </div>
 @endsection
+@section('js')
+
+<script>
+    $(document).ready(function() {
+        @foreach(\Config::get("app.languages") as $key => $value)
+            $('#tags_types_{{$key}}').tagsinput();
+        @endforeach
+    });
+</script>
+@endsection
 @section('content')
 
     <div class="layout-px-spacing">
 
-                
+
 
                 <div class="row layout-spacing">
-                   
+
                     <div class="col-lg-12">
                         <div class="statbox widget box box-shadow">
                             <div class="widget-header">
@@ -89,12 +145,12 @@
 
                                             </button>
                                         </div>
-                                       
-                                    </div>                 
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="widget-content widget-content-area">
-                                 
+
                                 <div class="row">
                                     @include("admin::layouts.parts.app.alerts")
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -104,14 +160,14 @@
                                                     <th class="text-center">{{__('admin.image')}}</th>
                                                     <th class="text-center">{{__('admin.name')}}</th>
                                                     <th class="text-center">{{__('admin.link')}}</th>
- 
+
                                                     <th class="text-center dt-no-sorting">{{__('admin.actions')}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach($data as $item)
                                                 <tr>
-                                                    
+
                                                     <td class="text-center">
                                                         <img src="{{url('/')}}/storage/{{$item->image}}" class="table-img">
                                                     </td>
@@ -121,8 +177,8 @@
                                                         @endforeach
                                                     </td>
                                                     <td class="text-center">{{$item->slug}}</td>
-                                                   
-                       
+
+
                                                     <td class="text-center">
                                                         <ul class="table-controls">
                                                             <li>
@@ -140,7 +196,7 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
- 
+
                                             </tbody>
                                         </table>
                                         {{$data->links()}}

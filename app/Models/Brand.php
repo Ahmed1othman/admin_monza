@@ -14,7 +14,7 @@ class Brand extends Model implements Sitemapable
 
     use HasTranslations;
 
-    public $translatable = ['title','page_title','page_description'];
+    public $translatable = ['title','page_title','page_description','meta_title','meta_description','meta_keywords'];
 
     protected $fillable = [
         'title',
@@ -23,6 +23,9 @@ class Brand extends Model implements Sitemapable
         'sync_id',
         'page_title',
         'page_description',
+        'meta_title',
+        'meta_description',
+        'meta_keywords'
     ];
 
     protected $hidden = ['image'];
@@ -42,7 +45,7 @@ class Brand extends Model implements Sitemapable
 
     public function slug() {
         // $slug = str_replace(' ', '-', $this->getTranslation('title','en'));
-        // return $slug;        
+        // return $slug;
         $slug = "rent-".str_replace(' ', '-', $this->getTranslation('title','en'))."-in-Dubai";
         return $slug;
     }

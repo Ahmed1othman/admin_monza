@@ -168,7 +168,7 @@ return [
     "show" => "عرض",
     "login_to" => "الدخول الي",
     "your_account" => "حسابك",
-
+    "meta_title" => 'Meta Title'
 
 
 ];

@@ -31,10 +31,20 @@
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/plugins/table/datatable/dt-global_style.css">
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/plugins/table/datatable/custom_dt_custom.css">
     <!-- END PAGE LEVEL CUSTOM STYLES -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
     <link href="{{url('/')}}/assets/css/custom_dashboard.css" rel="stylesheet" type="text/css" />
 
+
+
 </head>
+<style>
+    span.tag {
+        color: rgb(85, 85, 85) !important;
+        background: #E9ECEF;
+        border-radius: 10%;
+        padding: 1px;
+    }
+</style>
 <body>
 
     @section('modals')
@@ -69,7 +79,7 @@
                     </div>
                 </li>
             </ul>
-           
+
         </header>
     </div>
     <!--  END NAVBAR  -->
@@ -83,7 +93,7 @@
         <!--  BEGIN SIDEBAR  -->
         @include('admin::layouts.parts.app.sidebar')
         <!--  END SIDEBAR  -->
-        
+
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
 
@@ -108,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach 
+            @endforeach
             @foreach(\Config::get("app.languages") as $key => $value)
                 <div class="col-lg-6">
                     <div class="form-group row mb-4">
@@ -118,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach 
+            @endforeach
             <div class="col-lg-12">
                 <button type="button" class="btn btn-danger mt-20 btn-rounded remove-faq">
                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -156,6 +166,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="{{url('/')}}/assets/js/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     @section('js')
     @show

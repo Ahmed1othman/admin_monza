@@ -10,7 +10,7 @@
                         <h4>{{__('admin.edit')}}</h4>
                         <button onclick="tinyMCE.triggerSave(true,true);" class="btn btn-primary btn-rounded submit-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                            {{__('admin.save')}} 
+                            {{__('admin.save')}}
 
                         </button>
                     </div>
@@ -25,7 +25,7 @@
                                 <div class="widget-content widget-content-area">
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        
+
                                         @if(auth()->user()->type == "admin")
                                         <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.office_singular')}} التأجير</label>
@@ -35,7 +35,7 @@
                                                     @foreach(\App\Models\Company::all() as $x)
                                                     <option @if($car->company_id == $x->id) selected @endif value="{{$x->id}}">{{$x->name}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -55,11 +55,11 @@
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.type')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
                                                 <select class="form-control" multiple name="type_id[]" required>
-                                                   
+
                                                     @foreach(\App\Models\Type::all() as $x)
                                                     <option @if(in_array($x->id, $car->types()->pluck('car_types.type_id')->toArray())) selected @endif value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -111,13 +111,13 @@
                                         <!-- <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.price')}} بعد الخصم لل{{__('admin.day')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                
+
                                                 <input  type="number" value="{{$car->day_offer_price}}"  class="form-control" name="day_offer_price" >
                                                 <br/>
                                                 <input style="margin-left:4px" @if($car->is_day_offer == 1) checked @endif type="checkbox" name="is_day_offer" /> تفعيل {{__('admin.view')}}
 
                                             </div>
-                                           
+
                                         </div> -->
 
                                         <div class="form-group row mb-4">
@@ -180,7 +180,7 @@
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.features')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
                                                 <select class="form-control" multiple name="feature_id[]">
-                                                   
+
                                                     @foreach(\App\Models\Feature::where(function($query) use ($car) {
                                                         if($car->type == "default" || $car->type == "driver") {
                                                             $query->where('type', '=', 'car');
@@ -191,7 +191,7 @@
                                                     })->get() as $x)
                                                     <option @if(in_array($x->id, $car->features()->pluck('car_features.feature_id')->toArray())) selected @endif value="{{$x->id}}">{{$x->name}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@
                                                     @foreach(\App\Models\Brand::all() as $x)
                                                     <option @if($car->brand_id == $x->id) selected @endif value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -217,17 +217,17 @@
                                                 <select class="form-control select-model" name="model_id" required>
                                                     <option value="">{{__('admin.model')}}</option>
                                                     @if($car->type == "yacht")
-                                                  
+
                                                         @foreach(\App\Models\Models::where('type', '=', 'yacht')->get() as $x)
                                                             <option @if($car->model_id == $x->id) selected @endif value="{{$x->id}}">{{$x->title}}</option>
                                                         @endforeach
-                                        
+
                                                     @else
                                                         @foreach($car->brand->models()->get() as $m)
                                                             <option @if($car->model_id == $m->id) selected @endif value="{{$m->id}}">{{$m->title}}</option>
                                                         @endforeach
                                                     @endif
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -240,7 +240,7 @@
                                                     @foreach(\App\Models\Color::all() as $x)
                                                     <option @if($car->color_id == $x->id) selected @endif value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -253,12 +253,12 @@
                                                     @foreach(\App\Models\Year::all() as $x)
                                                     <option @if($car->year_id == $x->id) selected @endif value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
 
-                        
+
 
                                         <div class="form-group row mb-4">
                                             <label for="hPassword" class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.image')}} {{__('admin.home')}}</label>
@@ -270,20 +270,20 @@
                                                 @if($car->image)
                                                 <a href="{{url('/')}}/storage/{{$car->image}}" target="_blank">
                                                     <img class="image-form" src="{{url('/')}}/storage/{{$car->image}}" alt="">
-                                                   
+
                                                 </a>
                                                 @endif
-                                            
+
                                             </div>
 
-                                        </div>                                          
-                                        
+                                        </div>
+
                                         <div class="form-group row mb-4">
                                             <label for="hPassword" class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.other_images')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <div id="cars-uploader" class="dropzone"> 
+                                                <div id="cars-uploader" class="dropzone">
                                                     <div class="dz-message" data-dz-message><span>{{__('admin.choose_file')}}</span></div>
-                                                    
+
                                                 </div>
                                                 <div class="all-images">
                                                     @foreach($car->images as $img)
@@ -294,24 +294,24 @@
 
                                                     @endforeach
                                                 </div>
-                                        
+
                                             </div>
 
-                                        </div>    
-                                        
-                
+                                        </div>
 
 
-  
 
-                                        
-                                        
+
+
+
+
+
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                      
+
                         </div>
                         <div class="col-lg-5">
                             <div class="statbox widget box box-shadow ">
@@ -319,28 +319,28 @@
                                 <div class="widget-content widget-content-area ">
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        
+
                                             @if($car->type != "yacht")
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.engine')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input value="{{$car->engine_capacity}}"  type="text"   class="form-control" name="engine_capacity" >
                                                 </div>
-                                            </div>  
-                                            
+                                            </div>
+
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.qty')}} {{__('admin.doors')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input value="{{$car->doors}}"  type="number"   class="form-control" name="doors" >
                                                 </div>
-                                            </div> 
-                                            
+                                            </div>
+
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.qty')}} {{__('admin.bags')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input value="{{$car->bags}}"  type="number"   class="form-control" name="bags" >
                                                 </div>
-                                            </div>  
+                                            </div>
                                            @endif
 
                                             <div class="form-group row mb-4">
@@ -348,9 +348,9 @@
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input value="{{$car->passengers}}" type="number"   class="form-control" name="passengers" >
                                                 </div>
-                                            </div>  
-                                            
-                                            
+                                            </div>
+
+
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.Insurance Type')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
@@ -361,7 +361,7 @@
                                                         <option @if($car->insurance_type == '') selected @endif value="">{{__('admin.')}}</option>
                                                     </select>
                                                 </div>
-                                            </div>  
+                                            </div>
 
 
 
@@ -372,13 +372,13 @@
                                                     <select class="form-control" name="status" required>
                                                         <option @if($car->status == 'active') selected @endif value="active">{{__('admin.active')}}</option>
                                                         <option @if($car->status == 'pending') selected @endif value="pending">{{__('admin.pending')}}</option>
-                                                       
-                                                    
+
+
                                                     </select>
                                                 </div>
                                             </div>
                                             @endif
-                                        
+
                                         </div>
                                     </div>
 
@@ -388,47 +388,93 @@
                                 <div class="widget-content widget-content-area ">
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            
+
                                             {{-- Offer Fields --}}
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('كمية الخصم') }}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                    <input 
-                                                        type="text" 
-                                                        required 
-                                                        class="form-control" 
-                                                        name="offer_amount" 
-                                                        value="{{ old('offer_amount', $car->offer_amount ?? '') }}" 
+                                                    <input
+                                                        type="text"
+                                                        required
+                                                        class="form-control"
+                                                        name="offer_amount"
+                                                        value="{{ old('offer_amount', $car->offer_amount ?? '') }}"
                                                         placeholder="{{ __('') }}">
                                                 </div>
                                             </div>
-                            
+
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('مدة الخصم بالساعات') }}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                    <input 
-                                                        type="number" 
-                                                        required 
-                                                        class="form-control" 
-                                                        name="offer_duration" 
-                                                        value="{{ old('offer_duration', $car->offer_duration ?? '') }}" 
+                                                    <input
+                                                        type="number"
+                                                        required
+                                                        class="form-control"
+                                                        name="offer_duration"
+                                                        value="{{ old('offer_duration', $car->offer_duration ?? '') }}"
                                                         placeholder="{{ __('') }}">
                                                 </div>
                                             </div>
-                            
+
                                             {{-- Add other offer-specific fields here if needed --}}
-                            
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            
+                            <div class="statbox widget box box-shadow mt-3">
+                                <div class="widget-content widget-content-area ">
+                                <h4>
+                                    Meta Data
+                                </h4>
+                                 <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                            {{-- Meta Title Fields --}}
+                                            @foreach(\Config::get("app.languages") as $key => $value)
+                                            <div class="form-group row mb-4">
+                                                <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('meta_title') }} {{$value}}</label>
+                                                <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                    <input type="text" required class="form-control" name="meta_title_{{$key}}" placeholder="{{ __('') }}" value="{{$car->getTranslation('meta_title', $key)}}">
+                                                </div>
+                                            </div>
+                                            @endforeach
+
+
+                                            {{-- Meta Description Fields --}}
+                                            @foreach(\Config::get("app.languages") as $key => $value)
+                                            <div class="form-group row mb-4">
+                                                <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('meta_description') }} {{$value}}</label>
+                                                <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                    <input type="text" required class="form-control" name="meta_description_{{$key}}" placeholder="{{ __('') }}"  value="{{$car->getTranslation('meta_description', $key)}}">
+                                                </div>
+                                            </div>
+                                            @endforeach
+
+
+                                            {{-- Meta Keywords Fields --}}
+                                            @foreach(\Config::get("app.languages") as $key => $value)
+                                            <div class="form-group row mb-4">
+                                                <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('meta_keywords') }} {{$value}}</label>
+                                                <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                    <input id="tags_{{$key}}" data-role="tagsinput" type="text" required class="form-control tag" name="meta_keywords_{{$key}}" placeholder="{{ __('') }}"  value="{{$car->getTranslation('meta_keywords', $key)}}">
+                                                </div>
+                                            </div>
+                                            @endforeach
+
+
+                                            {{-- Add other offer-specific fields here if needed --}}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
-              
-              
+
+
                     </div>
 
                 </form>
@@ -437,4 +483,16 @@
 
             </div>
 
+@endsection
+@section('js')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        @foreach(\Config::get("app.languages") as $key => $value)
+            $('#tags_{{$key}}').tagsinput();
+        @endforeach
+    });
+</script>
 @endsection
