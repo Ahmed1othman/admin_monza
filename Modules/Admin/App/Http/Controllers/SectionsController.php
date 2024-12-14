@@ -114,6 +114,9 @@ class SectionsController extends Controller
      */
     public function destroy($id)
     {
+        $default = Section::where('id',$id)->where('is_default',0)->first();
+        if ($default)
+            return redirect()->back()->withError("لا يمكن حذف قسم الافتراضي");
         Section::destroy($id);
         return redirect("/admin/sections")->withSuccess("تم حذف القسم بنجاح");
     }

@@ -45,67 +45,58 @@ Route::group(["middleware" => ["AdminLang"]], function() {
         return redirect()->back();
     });
 
-Route::group(["prefix" => "admin", "middleware"=>['guest']], function() {
+    Route::group(["prefix" => "admin", "middleware"=>['guest']], function() {
 
-    Route::get("/login", [LoginController::class, 'index']);
-    Route::post("/login", [LoginController::class, 'login']);
+        Route::get("/login", [LoginController::class, 'index']);
+        Route::post("/login", [LoginController::class, 'login']);
+    });
+    Route::get('/admin/lang/switch', [HomeController::class, 'switchLang']);
 
+    Route::group(["prefix" => "admin", "middleware" => ['AdminAuth']], function () {
+        Route::get('/', [HomeController::class, 'index']);
 
-});
-Route::get('/admin/lang/switch', [HomeController::class, 'switchLang']);
+        Route::resource('brands', BrandsController::class);
+        Route::resource('models', ModelsController::class);
+        Route::resource('types', TypesController::class);
+        Route::resource('colors', ColorsController::class);
+        Route::resource('years', YearsController::class);
+        Route::resource('countries', CountriesController::class);
+        Route::resource('cities', CitiesController::class);
+        Route::resource('companies', CompaniesController::class);
+        Route::resource('cars', CarsController::class);
+        Route::resource('features', FeaturesController::class);
+        Route::resource('pages', PagesController::class);
+        Route::resource('banners', BannersController::class);
+        Route::resource('sections', SectionsController::class);
+        Route::resource('customers', CustomersController::class);
+        Route::resource('settings', SettingsController::class);
+        Route::resource('blog', BlogController::class);
+        Route::resource('service', ServiceController::class);
+        Route::resource('required-documents', RequiredDocumentController::class);
 
+        Route::get('cars/{brand_id}/models', [CarsController::class, 'getModels']);
+        Route::post('models/content/import', [ModelsController::class, 'importExcel']);
+        Route::get('cars/images/{id}/delete', [CarsController::class, 'deleteImage']);
+        Route::get('cars/{id}/status', [CarsController::class, 'toggleStatus']);
+        Route::get('cars/{id}/delete', [CarsController::class, 'destroy']);
+        Route::get('cars/{id}/visibilty', [CarsController::class, 'toggleVisibility']);
+        Route::get('cars/{id}/refresh', [CarsController::class, 'refreshSingleCar']);
+        Route::post('cars/list/refresh', [CarsController::class, 'refreshCars']);
 
-Route::group(["prefix" => "admin", "middleware" => ['AdminAuth']], function () {
-
-
-    Route::get('/', [HomeController::class, 'index']);
-
-    Route::resource('brands', BrandsController::class);
-    Route::resource('models', ModelsController::class);
-    Route::resource('types', TypesController::class);
-    Route::resource('colors', ColorsController::class);
-    Route::resource('years', YearsController::class);
-    Route::resource('countries', CountriesController::class);
-    Route::resource('cities', CitiesController::class);
-    Route::resource('companies', CompaniesController::class);
-    Route::resource('cars', CarsController::class);
-    Route::resource('features', FeaturesController::class);
-    Route::resource('pages', PagesController::class);
-    Route::resource('banners', BannersController::class);
-    Route::resource('sections', SectionsController::class);
-    Route::resource('customers', CustomersController::class);
-    Route::resource('settings', SettingsController::class);
-    Route::resource('blog', BlogController::class);
-    Route::resource('service', ServiceController::class);
-    Route::resource('required-documents', RequiredDocumentController::class);
-
-    Route::get('cars/{brand_id}/models', [CarsController::class, 'getModels']);
-    Route::post('models/content/import', [ModelsController::class, 'importExcel']);
-    Route::get('cars/images/{id}/delete', [CarsController::class, 'deleteImage']);
-    Route::get('cars/{id}/status', [CarsController::class, 'toggleStatus']);
-    Route::get('cars/{id}/delete', [CarsController::class, 'destroy']);
-    Route::get('cars/{id}/visibilty', [CarsController::class, 'toggleVisibility']);
-    Route::get('cars/{id}/refresh', [CarsController::class, 'refreshSingleCar']);
-    Route::post('cars/list/refresh', [CarsController::class, 'refreshCars']);
-
-    Route::get('countries/{id}/cities', [CitiesController::class, 'getCities']);
-    Route::get('/logout', [AccountController::class, 'logout']);
+        Route::get('countries/{id}/cities', [CitiesController::class, 'getCities']);
+        Route::get('/logout', [AccountController::class, 'logout']);
 
 
-    Route::get('offers', [OffersController::class, 'index']);
-    Route::post('offers', [OffersController::class, 'update']);
+        Route::get('offers', [OffersController::class, 'index']);
+        Route::post('offers', [OffersController::class, 'update']);
 
-    Route::get('content/{type}', [ContentController::class, 'index']);
-    Route::put('content/{type}', [ContentController::class, 'update']);
-    Route::get('content/delete-image/{id}/{number}', [ContentController::class, 'destroyImage']);
-    Route::get('/sitemap/generate', [ContentController::class, 'generateSitemap']);
+        Route::get('content/{type}', [ContentController::class, 'index']);
+        Route::put('content/{type}', [ContentController::class, 'update']);
+        Route::get('content/delete-image/{id}/{number}', [ContentController::class, 'destroyImage']);
+        Route::get('/sitemap/generate', [ContentController::class, 'generateSitemap']);
 
-    Route::resource('notifications', NotificationsController::class);
-    Route::resource('messages', MessagesController::class);
-    Route::resource('currencies', CurrenciesController::class);
-
-
-
-});
-
+        Route::resource('notifications', NotificationsController::class);
+        Route::resource('messages', MessagesController::class);
+        Route::resource('currencies', CurrenciesController::class);
+    });
 });

@@ -62,13 +62,23 @@
 
                                             </div>
 
+                                            @if($item->is_default == 0)
+                                                <div class="form-group row mb-4">
+                                                    <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.section_key')}}</label>
+                                                    <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                        <input type="text" value="{{$item->section_key}}" required class="form-control" name="section_key" >
+                                                    </div>
+                                                </div>
+                                            @endif
 
                                             <div class="form-group row mb-4">
-                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.sort')}}</label>
-                                            <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <input type="number" value="{{$item->sort}}" required class="form-control" name="sort" >
+                                                <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.sort')}}</label>
+                                                <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                    <input type="number" value="{{$item->sort}}" required class="form-control" name="sort" >
+                                                </div>
                                             </div>
-                                        </div>
+
+
 
 
 

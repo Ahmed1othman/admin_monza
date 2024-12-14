@@ -21,7 +21,7 @@ class PagesController extends Controller
     public function index()
     {
         $data = Page::where(function($query) {
-            
+
         })->orderBy("id","desc")->paginate(10);
         return view('admin::pages.index')->with('data', $data);
     }
@@ -95,14 +95,14 @@ class PagesController extends Controller
 
         $resource = "page";
         $content = new \Modules\Admin\App\Services\ContentService();
-        $content->update($request, 
+        $content->update($request,
         \App\Models\Content::where('type',$resource)->where('resource_id',$id)->first(),
         \App\Models\SEO::where('type',$resource)->where('resource_id',$id)->first()
         );
         $content->updateFaq($request, $resource, $id);
 
         if($request->has('car_id')) {
-        
+
             $page->cars()->sync($request->get('car_id'));
         }else {
             $page->cars()->detach();
@@ -115,6 +115,9 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
+        $default = Page::where('id',$id)->where('is_default',0)->first();
+        if ($default)
+            return redirect()->back()->withError("لا يمكن حذف صفحة الافتراضي");
         $page = Page::find($id);
         $page->delete();
         return redirect("/admin/pages")->withSuccess("تم حذف الصفحة بنجاح");

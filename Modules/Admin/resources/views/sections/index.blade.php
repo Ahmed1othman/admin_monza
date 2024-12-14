@@ -28,6 +28,8 @@
                         </div>
                         @endforeach
 
+
+
                         <div class="form-group row mb-4">
                                 <label for="hPassword" class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.image')}}</label>
                                 <div class="col-xl-9 col-lg-9 col-sm-10">
@@ -52,7 +54,12 @@
                             </div>
                         </div> -->
 
-
+                        <div class="form-group row mb-4">
+                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.section_key')}}</label>
+                            <div class="col-xl-9 col-lg-9 col-sm-10">
+                                <input type="text" required class="form-control" name="section_key" >
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-4">
                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.sort')}}</label>
@@ -139,11 +146,13 @@
                                                                 </a>
                                                              </li>
                                                             <li>
+                                                                @if($item->is_default == 0)
                                                                 <form action="{{url('/')}}/admin/sections/{{$item->id}}" method="post">
                                                                     @csrf
                                                                     @method("DELETE")
                                                                     <button class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{__('admin.delete')}}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
                                                                 </form>
+                                                                @endif
                                                             </li>
                                                         </ul>
                                                     </td>
