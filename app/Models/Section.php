@@ -20,8 +20,16 @@ class Section extends Model implements Sitemapable
         'description',
         'sort',
         'type_id',
+        'image',
 
     ];
+
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute() {
+        return url('storage/'.$this->image);
+
+    }
 
     public function type()
     {
@@ -45,5 +53,5 @@ class Section extends Model implements Sitemapable
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
             ->setPriority(0.1);
     }
- 
+
 }

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->longText('title')->nullable();
             $table->longText('description')->nullable();
+
+
             $table->integer('sort')->default(1);
             $table->foreignId('type_id')->constrained()->onDelete('cascade');
             $table->timestamps();

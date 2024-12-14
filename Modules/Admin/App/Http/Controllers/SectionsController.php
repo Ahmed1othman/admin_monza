@@ -41,9 +41,14 @@ class SectionsController extends Controller
         $data = $request->all();
         $data['title'] = [];
         $data['description'] = [];
+
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['title'][$key] = $request->get("title_" . $key);
             $data['description'][$key] = $request->get("description_" . $key);
+        }
+
+        if($request->has('image')){
+            $data['image'] = $request->file('image')->store('blog', 'public');
         }
         $section = Section::create($data);
 
@@ -84,6 +89,9 @@ class SectionsController extends Controller
         $data = $request->all();
         $data['title'] = [];
         $data['description'] = [];
+        if($request->has('image')){
+            $data['image'] = $request->file('image')->store('blog', 'public');
+        }
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['title'][$key] = $request->get("title_" . $key);
             $data['description'][$key] = $request->get("description_" . $key);
@@ -92,12 +100,12 @@ class SectionsController extends Controller
         $item->update($data);
 
         $content = new \Modules\Admin\App\Services\ContentService();
-        $content->update($request, 
+        $content->update($request,
         \App\Models\Content::where('type','section')->where('resource_id',$id)->first(),
         \App\Models\SEO::where('type','section')->where('resource_id',$id)->first()
         );
         $content->updateFaq($request, "section", $id);
-        
+
         return redirect("/admin/sections")->withSuccess("تم حفظ التغييرات بنجاح");
     }
 

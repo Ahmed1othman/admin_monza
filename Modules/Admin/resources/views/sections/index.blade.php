@@ -28,7 +28,19 @@
                         </div>
                         @endforeach
 
-                        <!-- <div class="form-group row mb-4">
+                        <div class="form-group row mb-4">
+                                <label for="hPassword" class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.image')}}</label>
+                                <div class="col-xl-9 col-lg-9 col-sm-10">
+                                    <div class="custom-file">
+                                        <input type="file"  class="custom-file-input" accept="image/*" name="image" id="customFile">
+                                        <label class="custom-file-label" for="customFile">{{__('admin.choose_file')}}</label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="form-group row mb-4">
                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">التصنيف</label>
                             <div class="col-xl-9 col-lg-9 col-sm-10">
                                 <select required class="form-control" name="type_id">
@@ -40,7 +52,7 @@
                             </div>
                         </div> -->
 
-                        
+
 
                         <div class="form-group row mb-4">
                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.sort')}}</label>
@@ -53,10 +65,10 @@
                             "content" => null,
                             "seo"     => null,
                             "faq"     => null
-                        ])             
+                        ])
 
 
-         
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> {{__('admin.cancel')}}</button>
@@ -71,10 +83,10 @@
 
     <div class="layout-px-spacing">
 
-                
+
 
                 <div class="row layout-spacing">
-                   
+
                     <div class="col-lg-12">
                         <div class="statbox widget box box-shadow">
                             <div class="widget-header">
@@ -88,12 +100,12 @@
 
                                             </button>
                                         </div>
-                                       
-                                    </div>                 
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="widget-content widget-content-area">
-                                 
+
                                 <div class="row">
                                     @include("admin::layouts.parts.app.alerts")
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -103,23 +115,23 @@
                                                     <th class="text-center">{{__('admin.name')}}</th>
                                                     <!-- <th class="text-center">التصنيف</th> -->
                                                     <th class="text-center">{{__('admin.sort')}}</th>
-                                                
+
                                                     <th class="text-center dt-no-sorting">{{__('admin.actions')}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach($data as $item)
                                                 <tr>
-                                                    
-    
-                                                    <td class="text-center"> 
+
+
+                                                    <td class="text-center">
                                                         @foreach(\Config::get("app.languages") as $key => $value)
                                                             {{$item->getTranslation("title",$key)}} <br/>
                                                         @endforeach
                                                     </td>
                                                     <td class="text-center"> {{$item->sort}}</td>
-                                                   
-                       
+
+
                                                     <td class="text-center">
                                                         <ul class="table-controls">
                                                             <li>
@@ -137,7 +149,7 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
- 
+
                                             </tbody>
                                         </table>
                                         {{$data->links()}}
