@@ -6,6 +6,7 @@ use Modules\Admin\App\Http\Controllers\AccountController;
 use Modules\Admin\App\Http\Controllers\HomeController;
 use Modules\Admin\App\Http\Controllers\BrandsController;
 use Modules\Admin\App\Http\Controllers\ModelsController;
+use Modules\Admin\App\Http\Controllers\RequiredDocumentController;
 use Modules\Admin\App\Http\Controllers\ServiceController;
 use Modules\Admin\App\Http\Controllers\TypesController;
 use Modules\Admin\App\Http\Controllers\ColorsController;
@@ -76,6 +77,7 @@ Route::group(["prefix" => "admin", "middleware" => ['AdminAuth']], function () {
     Route::resource('settings', SettingsController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('service', ServiceController::class);
+    Route::resource('required-documents', RequiredDocumentController::class);
 
     Route::get('cars/{brand_id}/models', [CarsController::class, 'getModels']);
     Route::post('models/content/import', [ModelsController::class, 'importExcel']);

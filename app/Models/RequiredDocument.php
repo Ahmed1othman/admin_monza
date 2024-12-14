@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
-class Color extends Model
+class RequiredDocument extends Model
 {
     use HasFactory;
     use HasTranslations;
 
-    public $translatable = ['title'];
+    public $translatable = ['content'];
 
     protected $fillable = [
-        'title',
-        "sync_id"
+        'for',
+        'content',
     ];
 
-    public function cars() {
-        return $this->hasMany(Car::class);
-    }
+    protected $hidden = ['created_at', 'updated_at'];
+
 }

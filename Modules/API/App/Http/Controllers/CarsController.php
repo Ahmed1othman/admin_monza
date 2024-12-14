@@ -3,11 +3,20 @@
 namespace Modules\API\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AdvancedSearchSettingResource;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Gear_type;
+use App\Models\Models;
+use App\Models\Type;
+use App\Models\Year;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Car;
 use App\Models\Company;
+use Illuminate\Support\Fluent;
 
 class CarsController extends Controller
 {
@@ -38,20 +47,20 @@ class CarsController extends Controller
     public function carsByType($id)
     {
         $cars = Car::with(['images','brand','model','color','types','company','year']);
- 
+
         $selected_types  = [$id];
 
         $content  = \App\Models\Content::where('type','type')->where('resource_id', $id)->first();
         $faq      = \App\Models\Faq::where('type','type')->where('resource_id', $id)->get();
 
-     
+
         $selected_types = array_unique($selected_types);
         $cars = $cars->whereHas('types', function($q) use ($selected_types) {
             if(count($selected_types) > 0) {
                 $q->whereIn('type_id',$selected_types);
             }
         });
-        
+
         $cars = $cars->whereHas('company', function($q) {
             $q->where('country_id', app('country')->getCountry()->id);
             if(app('country')->getCity()) {
@@ -114,11 +123,11 @@ class CarsController extends Controller
 
         $cars     = Car::with(['images','brand','model','color','types','company','year']);
         $cars     = $cars->where('brand_id',$id);
-        
+
         $content  = \App\Models\Content::where('type','brand')->where('resource_id', $id)->first();
         $faq      = \App\Models\Faq::where('type','brand')->where('resource_id', $id)->get();
-            
-        
+
+
         $selected_types = [];
         if(request()->get('type_id')) {
             $selected_types[] = request()->get('type_id');
@@ -192,7 +201,7 @@ class CarsController extends Controller
         $cars = Car::with(['images','brand','model','color','types','company','year']);
         $selected_types  = [];
         if(request()->get('type_id')) {
-            $selected_types[] = request()->get('type_id'); 
+            $selected_types[] = request()->get('type_id');
         }
         $selected_types = array_unique($selected_types);
         $cars = $cars->whereHas('types', function($q) use ($selected_types) {
@@ -256,7 +265,7 @@ class CarsController extends Controller
     public function offers() {
         // Get current time
         $currentTime = now();
-    
+
         // Fetch cars with valid offers
         $cars = Car::with(['images', 'brand', 'model', 'color', 'types', 'company', 'year'])
             ->whereNotNull('offer_amount')
@@ -271,7 +280,7 @@ class CarsController extends Controller
                 }
                 return false;
         });
-    
+
             return response()->json([
                 'cars' => $cars,
             ]);
@@ -340,7 +349,7 @@ class CarsController extends Controller
         ->where(function($query) use ($car,$id) {
             if($car->brand_id) {
                 $query->where('brand_id',$car->brand_id);
-            } 
+            }
             $query->where('type',$car->type);
             $query->where('id','!=',$id);
         })->limit(10)->get();
@@ -371,7 +380,7 @@ class CarsController extends Controller
     public function showCompany($id) {
         $company = Company::findOrFail($id);
         $cars = Car::with(['images','brand','model','color','types','company','year'])->where('company_id',$id)->paginate(10);
-        
+
         $content = \App\Models\Content::where('type','company')->where('resource_id', $company->id)->first();
         $faq     = \App\Models\Faq::where('type','company')->where('resource_id', $company->id)->get();
         return response()->json([
@@ -446,5 +455,25 @@ class CarsController extends Controller
         return response()->json([
             "cars" => $wishlist
         ]);
+    }
+
+
+        public function advancedSearchSetting(){
+            $brands = Brand::all();
+            $types = Type::all();
+            $colors = Color::all();
+            $companies = Company::all();
+            $years = Year::all();
+//            $models = Models::all();
+
+            $data = new Fluent([
+                'brands' => $brands,
+                'types' => $types,
+                'colors' => $colors,
+//                'models' => $models,
+                'years' => $years,
+                'companies' => $companies,
+            ]);
+            return new AdvancedSearchSettingResource($data);
     }
 }
