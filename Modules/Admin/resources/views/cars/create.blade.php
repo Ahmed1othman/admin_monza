@@ -19,7 +19,7 @@
                         </h4>
                         <button onclick="tinyMCE.triggerSave(true,true);" class="btn btn-primary btn-rounded submit-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                            {{__('admin.save')}} 
+                            {{__('admin.save')}}
 
                         </button>
                     </div>
@@ -36,7 +36,7 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                         <input type="hidden" name="type" value="{{request()->get('type')}}" />
-                                        
+
                                         @if(auth()->user()->type == "admin")
                                         <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.office_singular')}}</label>
@@ -46,7 +46,7 @@
                                                     @foreach(\App\Models\Company::where("type", request()->get('type'))->get() as $x)
                                                     <option value="{{$x->id}}">{{$x->name}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -69,11 +69,11 @@
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.type')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
                                                 <select class="form-control" multiple name="type_id[]" required>
-                                                   
+
                                                     @foreach(\App\Models\Type::all() as $x)
                                                     <option value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -123,21 +123,24 @@
                                                 <input  type="number" required value="1"  class="form-control" name="minimum_day_booking" >
                                             </div>
                                         </div>
+                                        <div class="form-group row mb-4">
+                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">إظهار في الصفحة الرئيسية</label>
+                                            <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                <input style="margin-left:4px" type="checkbox" name="show_in_home" value="1"> إظهار في الصفحة الرئيسية
+                                            </div>
+                                        </div>
 
-
-
-                             
 
                                         <!-- <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.price')}} بعد الخصم لل{{__('admin.day')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                
+
                                                 <input  type="number"  class="form-control" name="day_offer_price" >
                                                 <br/>
                                                 <input style="margin-left:4px" type="checkbox" name="is_day_offer" value="1"> تفعيل {{__('admin.view')}}
 
                                             </div>
-                                           
+
                                         </div> -->
 
                                         <div class="form-group row mb-4">
@@ -203,7 +206,7 @@
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.features')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
                                                 <select class="form-control" multiple name="feature_id[]">
-                                                   
+
                                                     @foreach(\App\Models\Feature::where(function($query) {
                                                         if(request('type') == "default" || request('type') == "driver") {
                                                             $query->where('type', '=', 'car');
@@ -214,8 +217,8 @@
                                                     })->get() as $x)
                                                         <option value="{{$x->id}}">{{$x->name}}</option>
                                                     @endforeach
-                                               
-                                                  
+
+
                                                 </select>
                                             </div>
                                         </div>
@@ -229,7 +232,7 @@
                                                     @foreach(\App\Models\Brand::all() as $x)
                                                     <option value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -245,8 +248,8 @@
                                                         <option value="{{$x->id}}">{{$x->title}}</option>
                                                         @endforeach
                                                     @endif
-                                                  
-                                                  
+
+
                                                 </select>
                                             </div>
                                         </div>
@@ -259,7 +262,7 @@
                                                     @foreach(\App\Models\Color::all() as $x)
                                                     <option value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
@@ -272,12 +275,12 @@
                                                     @foreach(\App\Models\Year::all() as $x)
                                                     <option value="{{$x->id}}">{{$x->title}}</option>
                                                     @endforeach
-                                                  
+
                                                 </select>
                                             </div>
                                         </div>
 
-                        
+
 
                                         <div class="form-group row mb-4">
                                             <label for="hPassword" class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.image')}}</label>
@@ -286,36 +289,36 @@
                                                     <input type="file" required class="custom-file-input" accept="image/*" name="image" id="customFile">
                                                     <label class="custom-file-label" for="customFile">{{__('admin.choose_file')}}</label>
                                                 </div>
-                                            
+
                                             </div>
 
-                                        </div>                                          
-                                        
+                                        </div>
+
                                         <div class="form-group row mb-4">
                                             <label for="hPassword" class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.other_images')}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <div id="cars-uploader" class="dropzone"> 
+                                                <div id="cars-uploader" class="dropzone">
                                                     <div class="dz-message" data-dz-message><span>{{__('admin.choose_file')}}</span></div>
-                                                    
+
                                                 </div>
-                                        
+
                                             </div>
 
-                                        </div>    
-                                        
-                
+                                        </div>
 
 
-  
 
-                                        
-                                        
+
+
+
+
+
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                      
+
                         </div>
                         <div class="col-lg-5">
                             <div class="statbox widget box box-shadow ">
@@ -323,39 +326,39 @@
                                 <div class="widget-content widget-content-area ">
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        
+
                                             @if(request('type') == 'default' || request('type') == 'driver')
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.engine')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input  type="text" required  class="form-control" name="engine_capacity" >
                                                 </div>
-                                            </div>  
-                                            
+                                            </div>
+
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.qty')}} {{__('admin.doors')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input  type="number" required  class="form-control" name="doors" >
                                                 </div>
-                                            </div>     
+                                            </div>
 
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.qty')}} {{__('admin.bags')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input  type="number" required  class="form-control" name="bags" >
                                                 </div>
-                                            </div>  
+                                            </div>
 
                                             @endif
 
-                                            
+
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.qty')}} {{__('admin.passengers')}}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input  type="number" required  class="form-control" name="passengers" >
                                                 </div>
-                                            </div>     
-                                        
+                                            </div>
+
                                         </div>
                                     </div>
 
@@ -366,24 +369,24 @@
                                 <div class="widget-content widget-content-area ">
                                  <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            
+
                                             {{-- Offer Fields --}}
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('كمية الخصم') }}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                    <input type="text" required class="form-control" name="offer_amount" placeholder="{{ __('') }}">
+                                                    <input type="number" required class="form-control" name="offer_amount" placeholder="{{ __('') }}">
                                                 </div>
                                             </div>
-                            
+
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('مدة الخصم بالساعات') }})</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
                                                     <input type="number" required class="form-control" name="offer_duration" placeholder="{{ __('') }}">
                                                 </div>
                                             </div>
-                            
+
                                             {{-- Add other offer-specific fields here if needed --}}
-                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -391,9 +394,9 @@
 
                         </div>
 
-        
-              
-              
+
+
+
                     </div>
 
                 </form>

@@ -24,6 +24,12 @@ class HomeController extends Controller
         return response()->json($brands);
     }
 
+    public function requiredDocuments()
+    {
+        $documents = \App\Models\RequiredDocument::get();
+        return response()->json($documents);
+    }
+
     public function sections()
     {
         $sections = \App\Models\Section::with("cars")->orderBy('sort', 'asc')->get();

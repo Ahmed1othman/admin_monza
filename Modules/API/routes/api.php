@@ -21,6 +21,7 @@ Route::group(["middleware" => ['country-api']], function () {
 
     Route::get('/types', 'HomeController@types');
     Route::get('/brands', 'HomeController@brands');
+    Route::get('/required-documents', 'HomeController@requiredDocuments');
     Route::get('/sections', 'HomeController@sections');
     Route::get('/companies', 'HomeController@companies');
     Route::get('/banners', 'HomeController@banners');

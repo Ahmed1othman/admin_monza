@@ -21,7 +21,8 @@ class Section extends Model implements Sitemapable
         'sort',
         'type_id',
         'image',
-
+        'is_default',
+        'section_key',
     ];
 
     protected $appends = ['image_url'];
