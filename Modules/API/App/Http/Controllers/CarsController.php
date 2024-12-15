@@ -343,7 +343,7 @@ class CarsController extends Controller
 
     public function show($id)
     {
-        $car = Car::with(['images','brand','model','color','types','company','year'])->findOrfail($id);
+        $car = Car::with(['images','brand','model','color','types','company','year','features'])->findOrfail($id);
 
         $suggested_cars = Car::with(['images','brand','model','color','types','company','year'])
         ->where(function($query) use ($car,$id) {
