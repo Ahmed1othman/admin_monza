@@ -195,6 +195,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
+
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
