@@ -169,7 +169,7 @@
                                          <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">ال{{__('admin.description')}} والمميزات {{$value}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <textarea class="form-control" name="description_{{$key}}">{{$car->getTranslation('description', $key)}}</textarea>
+                                                <textarea class="form-control body" name="description_{{$key}}">{{$car->getTranslation('description', $key)}}</textarea>
                                             </div>
                                         </div>
                                         @endforeach
@@ -178,7 +178,7 @@
                                         <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">ملاحظات للعميل {{$value}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <textarea class="form-control" name="customer_notes_{{$key}}">{{$car->getTranslation('customer_notes', $key)}}</textarea>
+                                                <textarea class="form-control " name="customer_notes_{{$key}}">{{$car->getTranslation('customer_notes', $key)}}</textarea>
                                             </div>
                                         </div>
                                         @endforeach
