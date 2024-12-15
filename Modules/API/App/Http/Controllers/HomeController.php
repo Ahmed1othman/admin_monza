@@ -26,8 +26,9 @@ class HomeController extends Controller
 
     public function requiredDocuments()
     {
-        $documents = \App\Models\RequiredDocument::get();
-        return response()->json($documents);
+        $data['native'] = \App\Models\RequiredDocument::where('for','native')->get();
+        $data['foreign'] = \App\Models\RequiredDocument::where('for','foreign')->get();
+        return response()->json($data);
     }
 
     public function sections()
