@@ -123,12 +123,9 @@
                                                 <input  type="number" required value="1"  class="form-control" name="minimum_day_booking" >
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-4">
-                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">إظهار في الصفحة الرئيسية</label>
-                                            <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <input style="margin-left:4px" type="checkbox" name="show_in_home" value="1"> إظهار في الصفحة الرئيسية
-                                            </div>
-                                        </div>
+
+
+
 
 
                                         <!-- <div class="form-group row mb-4">
@@ -374,7 +371,7 @@
                                             <div class="form-group row mb-4">
                                                 <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{ __('كمية الخصم') }}</label>
                                                 <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                    <input type="number" required class="form-control" name="offer_amount" placeholder="{{ __('') }}">
+                                                    <input type="text" required class="form-control" name="offer_amount" placeholder="{{ __('') }}">
                                                 </div>
                                             </div>
 
