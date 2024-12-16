@@ -56,11 +56,9 @@ class PagesController extends Controller
         return response()->json($blog);
     }
 
-
     public function aboutUs(){
         $page = \App\Models\Page::where('slug','about-us')->first();
         $page->contents = \App\Models\Content::where('type','page')->where('resource_id',$page->id)->get();
-
         return response()->json($page);
     }
     public function contact(Request $request) {

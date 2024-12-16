@@ -210,14 +210,14 @@ class CarsController extends Controller
             }
         });
 
-        $cars = $cars->whereHas('company', function($q) {
-            $q->where('country_id', app('country')->getCountry()->id);
-            if(app('country')->getCity()) {
-                $q->whereHas('cities', function($qq) {
-                    $qq->where('city_id', app('country')->getCity()->id);
-                });
-            }
-        });
+//        $cars = $cars->whereHas('company', function($q) {
+//            $q->where('country_id', app('country')->getCountry()->id);
+//            if(app('country')->getCity()) {
+//                $q->whereHas('cities', function($qq) {
+//                    $qq->where('city_id', app('country')->getCity()->id);
+//                });
+//            }
+//        });
 
         $cars = $cars->where(function($query) {
             if(request()->get('search')) {
@@ -241,9 +241,9 @@ class CarsController extends Controller
             if(request()->get('max_price')) {
                 $query->where('price_per_day','<=',request()->get('max_price'));
             }
-            if(request()->get('company_id')) {
-                $query->where('company_id',request()->get('company_id'));
-            }
+//            if(request()->get('company_id')) {
+//                $query->where('company_id',request()->get('company_id'));
+//            }
             $query->where('type','default');
         })->orderBy('is_refresh','desc');
 
@@ -253,14 +253,18 @@ class CarsController extends Controller
             $cars = $cars->orderBy('price_per_day','desc');
         }
 
-
         $cars = $cars->paginate(10);
-
-
         return response()->json([
             'cars' => $cars,
         ]);
 
+    }
+
+    public function getCars(){
+        $cars = Car::with(['images','brand','model','color','types','company','year']);
+        if (\request()->get('show_in_home') == 1)
+            return $cars = $cars->where('show_in_home',1)->paginate(10);
+        return $cars = $cars->where('type','default')->paginate(10);
     }
     public function offers() {
         // Get current time
@@ -459,21 +463,21 @@ class CarsController extends Controller
 
 
         public function advancedSearchSetting(){
-            $brands = Brand::all();
-            $types = Type::all();
-            $colors = Color::all();
-            $companies = Company::all();
-            $years = Year::all();
-//            $models = Models::all();
+            $brands = Brand::select('id','title','slug')->withCount('cars')->get();
+            $types = Type::select('id','title','slug')->withCount('cars')->get();
+            $colors = Color::select('id','title')->withCount('cars')->get();
+//            $companies = Company::select('id')->withCount('cars')->get();
+            $years = Year::withCount('cars')->get();
+//            $models = Models::get();
 
-            $data = new Fluent([
+            return  [
                 'brands' => $brands,
                 'types' => $types,
                 'colors' => $colors,
 //                'models' => $models,
                 'years' => $years,
-                'companies' => $companies,
-            ]);
+//                'companies' => $companies,
+            ];
             return new AdvancedSearchSettingResource($data);
     }
 }

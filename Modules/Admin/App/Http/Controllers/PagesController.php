@@ -115,7 +115,7 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        $default = Page::where('id',$id)->where('is_default',0)->first();
+        $default = Page::where('id',$id)->where('is_default',1)->first();
         if ($default)
             return redirect()->back()->withError("لا يمكن حذف صفحة الافتراضي");
         $page = Page::find($id);
