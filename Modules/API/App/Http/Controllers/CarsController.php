@@ -463,9 +463,9 @@ class CarsController extends Controller
 
 
         public function advancedSearchSetting(){
-            $brands = Brand::select('id','title','slug')->withCount('cars')->get();
-            $types = Type::select('id','title','slug')->withCount('cars')->get();
-            $colors = Color::select('id','title')->withCount('cars')->get();
+            $brands = Brand::select('id','title','image','slug')->withCount('cars')->get();
+            $types = Type::select('id','title','image','slug')->withCount('cars')->get();
+            $colors = Color::select('id','title','image')->withCount('cars')->get();
 //            $companies = Company::select('id')->withCount('cars')->get();
             $years = Year::withCount('cars')->get();
 //            $models = Models::get();
@@ -476,29 +476,45 @@ class CarsController extends Controller
                 'colors' => $colors,
                 'years' => $years,
                 'prices'=>[
-                'min' => 200,
-                'max' => 50000
-            ]
+                    'min' => 200,
+                    'max' => 50000
+                ]
             ];
     }
 
 
     public function simpleSearch(){
         $query = request()->get('search');
-        if(request()->get('search')) {
-            $types = Type::where('name', 'like', '%' . $query . '%')
+        if($query) {
+            $types = Type::where('title', 'like', '%' . $query . '%')
+                ->select(
+                    'id',
+                    'title',
+                    'image',
+                    'slug',
+                )
                 ->withCount('cars')
                 ->limit(5)
                 ->get();
 
-            $brands = Brand::where('name', 'like', '%' . $query . '%')
+            $brands = Brand::where('title', 'like', '%' . $query . '%')
                 ->withCount('cars')
+                ->select(
+                    'id',
+                    'title',
+                    'slug',
+                    'image',
+                )
                 ->limit(5)
                 ->get();
 
-            $cars = Type::where('name', 'like', '%' . $query . '%')
-                ->withCount('cars')
+            $cars = Car::where('name', 'like', '%' . $query . '%')
                 ->limit(5)
+                ->select(
+                    'id',
+                    'name',
+                    'image',
+                )
                 ->get();
         }
 
