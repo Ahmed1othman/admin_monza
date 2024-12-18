@@ -474,10 +474,42 @@ class CarsController extends Controller
                 'brands' => $brands,
                 'types' => $types,
                 'colors' => $colors,
-//                'models' => $models,
                 'years' => $years,
-//                'companies' => $companies,
+                'prices'=>[
+                'min' => 200,
+                'max' => 50000
+            ]
             ];
-            return new AdvancedSearchSettingResource($data);
     }
+
+
+    public function simpleSearch(){
+        $query = request()->get('search');
+        if(request()->get('search')) {
+            $types = Type::where('name', 'like', '%' . $query . '%')
+                ->withCount('cars')
+                ->limit(5)
+                ->get();
+
+            $brands = Brand::where('name', 'like', '%' . $query . '%')
+                ->withCount('cars')
+                ->limit(5)
+                ->get();
+
+            $cars = Type::where('name', 'like', '%' . $query . '%')
+                ->withCount('cars')
+                ->limit(5)
+                ->get();
+        }
+
+        return response()->json([
+            "data"=>[
+                'types' => $types,
+                'brands' => $brands,
+                'cars' => $cars
+            ],
+            'status' =>'success'
+        ]);
+    }
+
 }

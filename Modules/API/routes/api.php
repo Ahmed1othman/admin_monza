@@ -32,6 +32,7 @@ Route::group(["middleware" => ['country-api']], function () {
     Route::get('/cars/t/{id}', 'CarsController@carsByType');
     Route::get('/cars/b/{id}', 'CarsController@carsByBrand');
     Route::post('/cars/search', 'CarsController@search');
+    Route::post('/cars/simple-search', 'CarsController@simpleSearch');
     Route::get('/cars/get-cars', 'CarsController@getCars');
     Route::get('advanced-search-setting', [CarsController::class, 'advancedSearchSetting']);
     Route::get('/cars/offers', 'CarsController@offers');
