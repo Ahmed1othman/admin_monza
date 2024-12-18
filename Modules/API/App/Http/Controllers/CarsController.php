@@ -465,7 +465,7 @@ class CarsController extends Controller
         public function advancedSearchSetting(){
             $brands = Brand::select('id','title','image','slug')->withCount('cars')->get();
             $types = Type::select('id','title','image','slug')->withCount('cars')->get();
-            $colors = Color::select('id','title','image')->withCount('cars')->get();
+            $colors = Color::select('id','title')->withCount('cars')->get();
 //            $companies = Company::select('id')->withCount('cars')->get();
             $years = Year::withCount('cars')->get();
 //            $models = Models::get();
