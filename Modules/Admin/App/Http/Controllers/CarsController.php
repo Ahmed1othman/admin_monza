@@ -314,30 +314,64 @@ class CarsController extends Controller
         $color = $car->color->getTranslation('title', $locale);
         $year = $car->year->title;
 
-        // Fetch features from the relationship
-        $features = $car->features->map(function ($feature) use ($locale) {
+        // Fetch features and types from relationships
+        $featuresList = $car->features->map(function ($feature) use ($locale) {
             return $feature->getTranslation('name', $locale);
-        })->implode(', ');
+        });
 
-        $types = $car->types->map(function ($feature) use ($locale) {
-            return $feature->getTranslation('title', $locale);
-        })->implode(', ');
+        $typesList = $car->types->map(function ($type) use ($locale) {
+            return $type->getTranslation('title', $locale);
+        });
+
+        // Convert lists to HTML <li> elements
+        $featuresHTML = $featuresList->map(fn($feature) => "<li>{$feature}</li>")->implode('');
+        $typesHTML = $typesList->map(fn($type) => "<li>{$type}</li>")->implode('');
 
         if ($locale === 'en') {
             return <<<HTML
-                    <h1>Rent the {$year} {$brand} {$model} in Dubai</h1>
-                    <p>Looking for a reliable and stylish car rental option in Dubai? The {$year} {$brand} {$model} in {$color} is the perfect choice for those who value comfort,types of this car can be such as {$types}, performance, and affordability. Featuring advanced features such as {$features}, this car ensures an enjoyable driving experience.</p>
-                    <p>Book now to drive the {$year} {$brand} {$model} during your Dubai trip and enjoy a seamless and stylish journey!</p>
-                    HTML;
+<h1 style="color: #fe9600;">Rent the {$year} {$brand} {$model} in Dubai</h1>
+<p>Are you planning a trip to Dubai and looking for a premium car rental option? The {$year} {$brand} {$model} in <span style="color: #fe9600;">{$color}</span> is your ideal companion for a comfortable and stylish ride.</p>
+
+<h2>Why Choose the {$year} {$brand} {$model}?</h2>
+<p>This car is known for its impressive performance and top-tier features, making it perfect for both short and long trips.</p>
+
+<h3>Main Features</h3>
+<ul>
+    {$featuresHTML}
+</ul>
+
+<h3>Available Types</h3>
+<ul>
+    {$typesHTML}
+</ul>
+
+<p>Whether you're visiting Dubai for business or leisure, the {$brand} {$model} offers unmatched reliability and elegance. Book your {$year} {$brand} {$model} today and make your Dubai experience unforgettable!</p>
+HTML;
         } elseif ($locale === 'ar') {
             return <<<HTML
-                    <h1>استأجر {$brand} {$model} {$year} في دبي</h1>
-                    <p>هل تبحث عن خيار تأجير سيارات موثوق وأنيق في دبي؟ سيارة {$brand} {$model} سنة {$year} بلون {$color} هي الخيار الأمثل لأولئك الذين يقدرون الراحة والأداء والسعر المناسب. تحتوي على ميزات متقدمة مثل: {$features}، مما يضمن تجربة قيادة مميزة.</p>
-                    <p>احجز الآن للاستمتاع بقيادة سيارة {$brand} {$model} {$year} في دبي وجعل رحلتك لا تُنسى!</p>
-                    HTML;
+<h1 style="color: #fe9600;">استأجر {$brand} {$model} {$year} في دبي</h1>
+<p>هل تخطط لرحلة إلى دبي وتبحث عن خيار تأجير سيارات فاخر؟ سيارة {$brand} {$model} سنة {$year} بلون <span style="color: #fe9600;">{$color}</span> هي الرفيق المثالي لرحلة مريحة وأنيقة.</p>
+
+<h2>لماذا تختار {$brand} {$model} {$year}؟</h2>
+<p>تشتهر هذه السيارة بأدائها المذهل وميزاتها الفاخرة، مما يجعلها مثالية للرحلات القصيرة والطويلة.</p>
+
+<h3>الميزات الرئيسية</h3>
+<ul>
+    {$featuresHTML}
+</ul>
+
+<h3>الأنواع المتاحة</h3>
+<ul>
+    {$typesHTML}
+</ul>
+
+<p>سواء كنت تزور دبي للعمل أو الترفيه، توفر سيارة {$brand} {$model} الموثوقية والأناقة بلا منازع. احجز {$brand} {$model} {$year} اليوم واجعل تجربتك في دبي لا تُنسى!</p>
+HTML;
         }
+
         return '';
     }
+
 
 
 }
