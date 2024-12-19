@@ -111,7 +111,6 @@
                                         <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">إظهار في الصفحة الرئيسية</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                {{"dasdsdsd: "  .$car->show_id_home}}
                                                 <input style="margin-left:4px" type="checkbox" name="show_in_home" {{$car->show_in_home ? "checked":''}} value="{{$car->show_in_home??0}}"> إظهار في الصفحة الرئيسية
                                             </div>
                                         </div>
