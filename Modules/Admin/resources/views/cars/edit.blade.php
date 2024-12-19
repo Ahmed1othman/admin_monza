@@ -26,20 +26,20 @@
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                        @if(auth()->user()->type == "admin")
-                                        <div class="form-group row mb-4">
-                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.office_singular')}} التأجير</label>
-                                            <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <select class="form-control" name="company_id" required>
-                                                    <option value="">{{__('admin.office')}}</option>
-                                                    @foreach(\App\Models\Company::all() as $x)
-                                                    <option @if($car->company_id == $x->id) selected @endif value="{{$x->id}}">{{$x->name}}</option>
-                                                    @endforeach
+{{--                                        @if(auth()->user()->type == "admin")--}}
+{{--                                        <div class="form-group row mb-4">--}}
+{{--                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.office_singular')}} التأجير</label>--}}
+{{--                                            <div class="col-xl-9 col-lg-9 col-sm-10">--}}
+{{--                                                <select class="form-control" name="company_id" required>--}}
+{{--                                                    <option value="">{{__('admin.office')}}</option>--}}
+{{--                                                    @foreach(\App\Models\Company::all() as $x)--}}
+{{--                                                    <option @if($car->company_id == $x->id) selected @endif value="{{$x->id}}">{{$x->name}}</option>--}}
+{{--                                                    @endforeach--}}
 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        @endif
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        @endif--}}
 
                                         @foreach(\Config::get("app.languages") as $key => $value)
                                         <div class="form-group row mb-4">
@@ -111,7 +111,8 @@
                                         <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">إظهار في الصفحة الرئيسية</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <input style="margin-left:4px" type="checkbox" name="show_in_home" {{$car->show_id_home ? "checked":''}} value="{{$car->show_id_home??0}}"> إظهار في الصفحة الرئيسية
+                                                {{"dasdsdsd: "  .$car->show_id_home}}
+                                                <input style="margin-left:4px" type="checkbox" name="show_in_home" {{$car->show_in_home ? "checked":''}} value="{{$car->show_in_home??0}}"> إظهار في الصفحة الرئيسية
                                             </div>
                                         </div>
 

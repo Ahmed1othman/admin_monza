@@ -282,7 +282,7 @@ $(".add-project-detail").on("click", function() {
 $(".select-country").on("change", function() {
     var country = $(this).val();
     $(".select-city").html()
-   
+
     // Clear selected items and destroy Select2 if initialized
     if ($(".select-city").hasClass("select2-hidden-accessible")) {
         $(".select-city").val(null).trigger('change'); // Clear selected items
@@ -310,7 +310,7 @@ $(".select-country").on("change", function() {
 
 if($("#cars-uploader").length) {
     $("div#cars-uploader").dropzone(
-        { 
+        {
             url: $("#cars-form").attr('action'),
             paramName:"files",
             autoProcessQueue: false,
@@ -337,7 +337,7 @@ if($("#cars-uploader").length) {
                             [
                                 {
                                     upload: {
-                                        filename: '' 
+                                        filename: ''
                                     }
                                 }
                             ],
@@ -351,13 +351,13 @@ if($("#cars-uploader").length) {
                         );
                     }
                     $('.dz-error-message').html("");
-                    
+
                 })
 
                 this.on("maxfilesexceeded", function(file) {
-                        this.removeAllFiles();
-                        this.addFile(file);
-                        $('.dz-error-message').html("");
+                    this.removeAllFiles();
+                    this.addFile(file);
+                    $('.dz-error-message').html("");
                 });
 
                 this.on('addedfile', function(file){
@@ -378,22 +378,22 @@ if($("#cars-uploader").length) {
                         errors = errors + "الملف غير مدعوم"
                     }
                     errors = errors + "</div>"
-                    
+
                     $('.dz-error-message').html(errors);
-                    
+
                 });
 
                 this.on('sending', function(file, xhr, formData) {
                     // Append all form inputs to the formData Dropzone will POST
                     var data = $('#cars-form').serializeArray();
                     $.each(data, function(key, el) {
-                        
+
                         formData.append(el.name, el.value);
-                        
+
                     });
                     // formData.append('content_description_ar', $("textarea[name='content_description_ar']").val())
                     // formData.append('content_description_en', $("textarea[name='content_description_en']").val())
-                    
+
                     if($('input[type=file]')[0].files[0]) {
                         formData.append('image', $('input[type=file]')[0].files[0]);
                     }
@@ -403,7 +403,7 @@ if($("#cars-uploader").length) {
                 });
 
                 this.on("success", function(file, response) {
-                   window.location.href = "/admin/cars?type=" + $("#cars-form").attr('data-type')
+                    window.location.href = "/admin/cars?type=" + $("#cars-form").attr('data-type')
                 })
             },
 
@@ -416,14 +416,14 @@ $('select').each(function() {
     $(this).select2({
         dir: "rtl",
         width: '100%',
-    dropdownAutoWidth: true,
+        dropdownAutoWidth: true,
         dropdownParent: $(this).parent()
     });
 });
 
 $(".select-brand").on("change", function() {
     var brand = $(this).val();
-    $(".select-model").select2('destroy'); 
+    $(".select-model").select2('destroy');
     $(".select-model").off('select2:select');
     $(".select-model").html("")
     if(brand) {
@@ -453,66 +453,66 @@ $(".home-period-filter").on("change", function() {
 
 // cars table
 
-    if($("#datatable-cars").length) {
-        var selectedCars = [];
+if($("#datatable-cars").length) {
+    var selectedCars = [];
 
-        var cars = $("#datatable-cars").DataTable({
-            dom: 'Bfrtip',
-            paging: false,
-            searching:false,
-            sort:false,
-            info:false,
-            responsive:false,
-            "aaSorting": [],
-            buttons: [
-                {
-                    text: '<i class="fas fa-sync-alt"></i> تحديث',
-                    action: function () {
-                        let count = cars.rows({ selected: true }).count();
-                        if(count == 0 ) {
-                            alert("قم بتحديد السيارات اولا")
-                        }else {
-                            $("#cars-list").submit()
-                        }
+    var cars = $("#datatable-cars").DataTable({
+        dom: 'Bfrtip',
+        paging: false,
+        searching:false,
+        sort:false,
+        info:false,
+        responsive:false,
+        "aaSorting": [],
+        buttons: [
+            {
+                text: '<i class="fas fa-sync-alt"></i> تحديث',
+                action: function () {
+                    let count = cars.rows({ selected: true }).count();
+                    if(count == 0 ) {
+                        alert("قم بتحديد السيارات اولا")
+                    }else {
+                        $("#cars-list").submit()
                     }
-                },
-            ],
-            columnDefs: [{
-                orderable: false,
-                className: 'select-checkbox',
-                targets: 0,
-                checkboxes: {
-                    selectRow: true
                 }
-            }],
-            select: {
-                style: 'multi',
-                selector: 'td:first-child'
             },
-            
-        })
-
-        cars.on( 'select', function ( e, dt, type, indexes ) {
-            if ( type === 'row' ) {
-                var node = dt.rows( indexes ).nodes()[0];
-                var id  =  $(node).attr("data-id");
-                $(node).find('input').prop('checked', true);
-                selectedCars.push(id)
-                console.log(selectedCars)
+        ],
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0,
+            checkboxes: {
+                selectRow: true
             }
-        } );
+        }],
+        select: {
+            style: 'multi',
+            selector: 'td:first-child'
+        },
 
-        cars.on( 'deselect', function ( e, dt, type, indexes ) {
-            if ( type === 'row' ) {
-                var node = dt.rows( indexes ).nodes()[0];
-                var id  =  $(node).attr("data-id");
-                selectedCars = selectedCars.filter(item => item !== id)
-                $(node).find('input').prop('checked', false);
-                console.log(selectedCars)
-            }
-        } );
+    })
 
-        $('#datatable-cars').wrap('<div class="dataTables_scroll" />');
-        $('#datatable-cars').css('transform', 'rotateX(180deg)');
+    cars.on( 'select', function ( e, dt, type, indexes ) {
+        if ( type === 'row' ) {
+            var node = dt.rows( indexes ).nodes()[0];
+            var id  =  $(node).attr("data-id");
+            $(node).find('input').prop('checked', true);
+            selectedCars.push(id)
+            console.log(selectedCars)
+        }
+    } );
 
-    }
+    cars.on( 'deselect', function ( e, dt, type, indexes ) {
+        if ( type === 'row' ) {
+            var node = dt.rows( indexes ).nodes()[0];
+            var id  =  $(node).attr("data-id");
+            selectedCars = selectedCars.filter(item => item !== id)
+            $(node).find('input').prop('checked', false);
+            console.log(selectedCars)
+        }
+    } );
+
+    $('#datatable-cars').wrap('<div class="dataTables_scroll" />');
+    $('#datatable-cars').css('transform', 'rotateX(180deg)');
+
+}

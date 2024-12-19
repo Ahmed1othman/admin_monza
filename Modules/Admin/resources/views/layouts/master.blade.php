@@ -69,7 +69,7 @@
                     </div>
                 </li>
             </ul>
-           
+
         </header>
     </div>
     <!--  END NAVBAR  -->
@@ -83,7 +83,7 @@
         <!--  BEGIN SIDEBAR  -->
         @include('admin::layouts.parts.app.sidebar')
         <!--  END SIDEBAR  -->
-        
+
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
 
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach 
+            @endforeach
             @foreach(\Config::get("app.languages") as $key => $value)
                 <div class="col-lg-6">
                     <div class="form-group row mb-4">
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach 
+            @endforeach
             <div class="col-lg-12">
                 <button type="button" class="btn btn-danger mt-20 btn-rounded remove-faq">
                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>

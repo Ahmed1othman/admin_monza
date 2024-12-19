@@ -74,6 +74,8 @@ class CarsController extends Controller
     {
         $data = $request->all();
         $data['name'] = [];
+        $data['show_in_home']? $data['show_in_home'] = 1: $data['show_in_home'] = 0;
+
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['name'][$key] = $request->get("name_" . $key);
         }
@@ -114,10 +116,10 @@ class CarsController extends Controller
             }
         }
 
-        // $resource = "car";
-        // $content = new \Modules\Admin\App\Services\ContentService();
-        // $content->create($request, $resource, $car->id);
-        // $content->updateFaq($request, $resource, $car->id);
+         $resource = "car";
+         $content = new \Modules\Admin\App\Services\ContentService();
+         $content->create($request, $resource, $car->id);
+         $content->updateFaq($request, $resource, $car->id);
 
         return response()->json(['status' => 'success']);
     }
@@ -138,9 +140,12 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $car = Car::find($id);
         $data = $request->all();
+
         $data['name'] = [];
+        $request->has('show_in_home')? $data['show_in_home']= 1: $data['show_in_home'] = 0;
         foreach(\Config::get("app.languages") as $key => $lang) {
             $data['name'][$key] = $request->get("name_" . $key);
         }
@@ -187,13 +192,13 @@ class CarsController extends Controller
             }
         }
 
-        // $resource = "car";
-        // $content = new \Modules\Admin\App\Services\ContentService();
-        // $content->update($request,
-        // \App\Models\Content::where('type',$resource)->where('resource_id',$id)->first(),
-        // \App\Models\SEO::where('type',$resource)->where('resource_id',$id)->first()
-        // );
-        // $content->updateFaq($request, $resource, $id);
+         $resource = "car";
+         $content = new \Modules\Admin\App\Services\ContentService();
+         $content->update($request,
+         \App\Models\Content::where('type',$resource)->where('resource_id',$id)->first(),
+         \App\Models\SEO::where('type',$resource)->where('resource_id',$id)->first()
+         );
+         $content->updateFaq($request, $resource, $id);
 
         return response()->json(['status' => 'success']);
     }

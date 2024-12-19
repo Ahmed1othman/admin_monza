@@ -358,10 +358,10 @@ class CarsController extends Controller
             $query->where('id','!=',$id);
         })->limit(10)->get();
 
-        $car->company->views()->create([
-            'car_id' => $car->id,
-            'user_id' => null
-        ]);
+//        $car->company->views()->create([
+//            'car_id' => $car->id,
+//            'user_id' => null
+//        ]);
 
         if($car->model) {
             $description = \App\Models\Content::where('type','model')->where('resource_id', $car->model->id)->first();
@@ -372,9 +372,10 @@ class CarsController extends Controller
         $content = \App\Models\Content::where('type','car')->where('resource_id', $car->id)->first();
         $faq     = \App\Models\Faq::where('type','car')->where('resource_id', $car->id)->get();
 
+
         return response()->json([
             'car' => $car,
-            'suggested_cars' => $suggested_cars,
+            'similar_cars' => $suggested_cars,
             'description' => $description,
             'content' => $content,
             'faq' => $faq

@@ -37,23 +37,23 @@
 
                                         <input type="hidden" name="type" value="{{request()->get('type')}}" />
 
-                                        @if(auth()->user()->type == "admin")
-                                        <div class="form-group row mb-4">
-                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.office_singular')}}</label>
-                                            <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <select class="form-control" name="company_id" required>
-                                                    <option value="">{{__('admin.office')}}</option>
-                                                    @foreach(\App\Models\Company::where("type", request()->get('type'))->get() as $x)
-                                                    <option value="{{$x->id}}">{{$x->name}}</option>
-                                                    @endforeach
+{{--                                        @if(auth()->user()->type == "admin")--}}
+{{--                                        <div class="form-group row mb-4">--}}
+{{--                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.office_singular')}}</label>--}}
+{{--                                            <div class="col-xl-9 col-lg-9 col-sm-10">--}}
+{{--                                                <select class="form-control" name="company_id" required>--}}
+{{--                                                    <option value="">{{__('admin.office')}}</option>--}}
+{{--                                                    @foreach(\App\Models\Company::where("type", request()->get('type'))->get() as $x)--}}
+{{--                                                    <option value="{{$x->id}}">{{$x->name}}</option>--}}
+{{--                                                    @endforeach--}}
 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        @else
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        @else--}}
 
-                                        <input type="hidden" name="company_id" value="{{auth()->user()->company->id}}" />
-                                        @endif
+{{--                                        <input type="hidden" name="company_id" value="{{auth()->user()->company->id}}" />--}}
+{{--                                        @endif--}}
 
                                         @foreach(\Config::get("app.languages") as $key => $value)
                                         <div class="form-group row mb-4">
@@ -182,22 +182,30 @@
                                         </div>
 
                                         @foreach(\Config::get("app.languages") as $key => $value)
-                                        <!-- <div class="form-group row mb-4">
+                                        <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">ال{{__('admin.description')}} والمميزات {{$value}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
                                                 <textarea class="form-control" name="description_{{$key}}"></textarea>
                                             </div>
-                                        </div> -->
+                                        </div>
                                         @endforeach
 
                                         @foreach(\Config::get("app.languages") as $key => $value)
-                                        <!-- <div class="form-group row mb-4">
+                                        <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">ملاحظات للعميل {{$value}}</label>
                                             <div class="col-xl-9 col-lg-9 col-sm-10">
                                                 <textarea class="form-control" name="customer_notes_{{$key}}"></textarea>
                                             </div>
-                                        </div> -->
+                                        </div>
                                         @endforeach
+
+                                        <div class="form-group row mb-4">
+                                            <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">إظهار في الصفحة الرئيسية</label>
+                                            <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                <input style="margin-left:4px" type="checkbox" name="show_in_home"> إظهار في الصفحة الرئيسية
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group row mb-4">
                                             <label class="col-xl-3 col-sm-3 col-sm-2 col-form-label">{{__('admin.features')}}</label>

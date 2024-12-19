@@ -105,20 +105,20 @@
                     @can('offices')
 
                     <li class="menu">
-                        <a href="#companies" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase">
-                                          <path d="M2 7h20v12H2z"></path>
-                                          <path d="M2 7l2-2h16l2 2"></path>
-                                          <path d="M6 10v6M10 10v6m4-6v6m4-6v6"></path>
-                                        </svg>
+{{--                        <a href="#companies" data-toggle="collapse" aria-expanded="false"class="dropdown-toggle">--}}
+{{--                            <div class="">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase">--}}
+{{--                                          <path d="M2 7h20v12H2z"></path>--}}
+{{--                                          <path d="M2 7l2-2h16l2 2"></path>--}}
+{{--                                          <path d="M6 10v6M10 10v6m4-6v6m4-6v6"></path>--}}
+{{--                                        </svg>--}}
 
-                                <span>{{__('admin.rental_offices')}}</span>
-                            </div>
-                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                            </div>
-                        </a>
+{{--                                <span>{{__('admin.rental_offices')}}</span>--}}
+{{--                            </div>--}}
+{{--                             <div>--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
                         <ul class="collapse submenu list-unstyled" id="companies" data-parent="#accordionExample">
                             <li>
                                 <a href="{{url('/')}}/admin/companies?type=default"> {{__('admin.rent_without_drivers')}}</a>
