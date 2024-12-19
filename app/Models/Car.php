@@ -14,11 +14,12 @@ class Car extends Model implements Sitemapable
 
     use HasTranslations;
 
-    public $translatable = ['name','customer_notes','description'];
+    public $translatable = ['name','customer_notes','description','long_description'];
 
     protected $fillable = [
         'name',
         'offer_amount',
+        'long_description',
         'offer_start_time',
         'offer_duration',
         'price_per_day',

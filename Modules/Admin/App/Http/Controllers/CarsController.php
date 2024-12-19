@@ -74,55 +74,62 @@ class CarsController extends Controller
     {
         $data = $request->all();
         $data['name'] = [];
-        $data['show_in_home']? $data['show_in_home'] = 1: $data['show_in_home'] = 0;
+        $data['show_in_home'] = $request->has('show_in_home') ? 1 : 0;
 
-        foreach(\Config::get("app.languages") as $key => $lang) {
+        // Handle multi-language fields
+        foreach (\Config::get("app.languages") as $key => $lang) {
             $data['name'][$key] = $request->get("name_" . $key);
-        }
-        $data['customer_notes'] = [];
-        foreach(\Config::get("app.languages") as $key => $lang) {
             $data['customer_notes'][$key] = $request->get("customer_notes_" . $key);
-        }
-        $data['description'] = [];
-        foreach(\Config::get("app.languages") as $key => $lang) {
             $data['description'][$key] = $request->get("description_" . $key);
         }
-        if($request->hasFile('image')) {
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('cars', 'public');
         }
-        if(auth()->user()->type == "admin") {
+
+        // Set admin-specific fields
+        if (auth()->user()->type == "admin") {
             $data['status'] = 'active';
             $data['is_publish'] = 1;
-        }else {
+        } else {
             $data['status'] = 'pending';
             $data['is_publish'] = 0;
         }
 
-         // Check if offer fields are provided and set offer data
+        // Handle offer fields
         if ($request->has('offer_amount') && $request->has('offer_duration')) {
             $data['offer_amount'] = $request->offer_amount;
             $data['offer_duration'] = $request->offer_duration;
-            $data['offer_start_time'] = now(); // Set the offer start time to the current time
+            $data['offer_start_time'] = now();
         }
+
         $data['type'] = $request->type;
 
+        // Create car record
         $car = Car::create($data);
 
-        $car->features()->sync($request->get('feature_id'));
-        $car->types()->sync($request->get('type_id'));
-        if($request->hasFile('files')) {
-            foreach($request->file('files') as $file) {
+        // Sync relationships
+        $car->features()->sync($request->get('feature_id', []));
+        $car->types()->sync($request->get('type_id', []));
+
+        // Handle additional files
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
                 $car->images()->create(['image' => $file->store('cars', 'public')]);
             }
         }
 
-         $resource = "car";
-         $content = new \Modules\Admin\App\Services\ContentService();
-         $content->create($request, $resource, $car->id);
-         $content->updateFaq($request, $resource, $car->id);
+        // Generate long descriptions
+        $car->long_description = [
+            'en' => $this->generateLongDescription($car, 'en'),
+            'ar' => $this->generateLongDescription($car, 'ar'),
+        ];
+        $car->save();
 
         return response()->json(['status' => 'success']);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -140,7 +147,6 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $car = Car::find($id);
         $data = $request->all();
 
@@ -192,13 +198,19 @@ class CarsController extends Controller
             }
         }
 
-         $resource = "car";
-         $content = new \Modules\Admin\App\Services\ContentService();
-         $content->update($request,
-         \App\Models\Content::where('type',$resource)->where('resource_id',$id)->first(),
-         \App\Models\SEO::where('type',$resource)->where('resource_id',$id)->first()
-         );
-         $content->updateFaq($request, $resource, $id);
+        $car->long_description = [
+            'en' => $this->generateLongDescription($car, 'en'),
+            'ar' => $this->generateLongDescription($car, 'ar'),
+        ];
+        $car->save();
+
+//         $resource = "car";
+//         $content = new \Modules\Admin\App\Services\ContentService();
+//         $content->update($request,
+//         \App\Models\Content::where('type',$resource)->where('resource_id',$id)->first(),
+//         \App\Models\SEO::where('type',$resource)->where('resource_id',$id)->first()
+//         );
+//         $content->updateFaq($request, $resource, $id);
 
         return response()->json(['status' => 'success']);
     }
@@ -218,6 +230,8 @@ class CarsController extends Controller
                 $car->refreshed_at = now();
                 $car->save();
             }
+
+
         }
         return redirect()->back()->withSuccess("تم تحديث السيارات بنجاح");
 
@@ -291,4 +305,39 @@ class CarsController extends Controller
         $car->save();
         return redirect()->back()->withSuccess("تم تغيير حالة العرض");
     }
+
+
+    private function generateLongDescription($car, $locale)
+    {
+        $brand = $car->brand->getTranslation('title', $locale);
+        $model = $car->model->getTranslation('title', $locale);
+        $color = $car->color->getTranslation('title', $locale);
+        $year = $car->year->title;
+
+        // Fetch features from the relationship
+        $features = $car->features->map(function ($feature) use ($locale) {
+            return $feature->getTranslation('name', $locale);
+        })->implode(', ');
+
+        $types = $car->types->map(function ($feature) use ($locale) {
+            return $feature->getTranslation('title', $locale);
+        })->implode(', ');
+
+        if ($locale === 'en') {
+            return <<<HTML
+                    <h1>Rent the {$year} {$brand} {$model} in Dubai</h1>
+                    <p>Looking for a reliable and stylish car rental option in Dubai? The {$year} {$brand} {$model} in {$color} is the perfect choice for those who value comfort,types of this car can be such as {$types}, performance, and affordability. Featuring advanced features such as {$features}, this car ensures an enjoyable driving experience.</p>
+                    <p>Book now to drive the {$year} {$brand} {$model} during your Dubai trip and enjoy a seamless and stylish journey!</p>
+                    HTML;
+        } elseif ($locale === 'ar') {
+            return <<<HTML
+                    <h1>استأجر {$brand} {$model} {$year} في دبي</h1>
+                    <p>هل تبحث عن خيار تأجير سيارات موثوق وأنيق في دبي؟ سيارة {$brand} {$model} سنة {$year} بلون {$color} هي الخيار الأمثل لأولئك الذين يقدرون الراحة والأداء والسعر المناسب. تحتوي على ميزات متقدمة مثل: {$features}، مما يضمن تجربة قيادة مميزة.</p>
+                    <p>احجز الآن للاستمتاع بقيادة سيارة {$brand} {$model} {$year} في دبي وجعل رحلتك لا تُنسى!</p>
+                    HTML;
+        }
+        return '';
+    }
+
+
 }
