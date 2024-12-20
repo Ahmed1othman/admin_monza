@@ -49,7 +49,7 @@ class PagesController extends Controller
         $blog = \App\Models\Blog::where('id',$id)->first();
         $blog->similar_blogs =\App\Models\Blog::orderBy('created_at','desc')
             ->where('id','!=',$blog->id)
-            ->limit(5)
+            ->limit(3)
             ->get();
 
         return response()->json($blog);
