@@ -329,13 +329,13 @@ class CarsController extends Controller
 
         if ($locale === 'en') {
             return <<<HTML
-<h1 style="color: #fe9600;">Rent the {$year} {$brand} {$model} in Dubai</h1>
-<p>Are you planning a trip to Dubai and looking for a premium car rental option? The {$year} {$brand} {$model} in <span style="color: #fe9600;">{$color}</span> is your ideal companion for a comfortable and stylish ride.</p>
+        <h1 style="color: #fe9600;">Rent the {$year} {$brand} {$model} in Dubai</h1>
+        <p>Are you planning a trip to Dubai and looking for a premium car rental option? The {$year} {$brand} {$model} in <span style="color: #fe9600;">{$color}</span> is your ideal companion for a comfortable and stylish ride.</p>
 
-<h2>Why Choose the {$year} {$brand} {$model}?</h2>
-<p>This car is known for its impressive performance and top-tier features, making it perfect for both short and long trips.</p>
+        <h2>Why Choose the {$year} {$brand} {$model}?</h2>
+        <p>This car is known for its impressive performance and top-tier features, making it perfect for both short and long trips.</p>
 
-<h3>Main Features</h3>
+        <h3>Main Features</h3>
 <ul>
     {$featuresHTML}
 </ul>
@@ -360,7 +360,7 @@ HTML;
     {$featuresHTML}
 </ul>
 
-<h3>الأنواع المتاحة</h3>
+<h3>هذه السيارة تقع تحت الانواع :</h3>
 <ul>
     {$typesHTML}
 </ul>

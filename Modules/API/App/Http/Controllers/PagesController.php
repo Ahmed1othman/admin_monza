@@ -47,6 +47,10 @@ class PagesController extends Controller
     public function showBlog($id)
     {
         $blog = \App\Models\Blog::where('id',$id)->first();
+        $blog->similar_blogs = $blog = \App\Models\Blog::where('id',$id)
+            ->orderBy('created_at','desc')
+            ->limit(10)
+            ->get();
         return response()->json($blog);
     }
 
